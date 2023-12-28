@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Home Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+      }
+
+      header {
+        background-color: #007BFF;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 20px;
+      }
+
+      /* You can set a maximum width to limit the container's width on larger screens */
+      .container {
+        max-width: 100%; /* This ensures the container takes the full width of the viewport */
+      }
+
+      .box {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        height: 200px;
+        width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .box a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .clients {
+        background-color: #FFC107;
+      }
+
+      .deals {
+        background-color: #28A745;
+      }
+
+      .activity-report {
+        background-color: #DC3545;
+      }
+
+      .sales-target {
+        background-color: #17A2B8;
+      }
+
+      .sales-performance {
+        background-color: #6610F2;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CRM Home Page</h1>
+    </header>
+    <div class="container">
+        <div class="box clients">
+            <a href="clients.html">
+                <span>Clients</span>
+            </a>
+        </div>
+        <div class="box deals">
+            <a href="deals.html">
+                <span>Deals</span>
+            </a>
+        </div>
+        <div class="box activity-report">
+            <a href="activityreport.html">
+                <span>Activity Report</span>
+            </a>
+        </div>
+        <div class="box sales-target">
+            <a href="salestarget.html">
+                <span>Sales Target</span>
+            </a>
+        </div>
+        <div class="box sales-performance">
+            <a href="salesperformance.html">
+                <span>Sales Performance</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

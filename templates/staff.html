@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Teachers Data</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4; /* Light gray background */
+    }
+    h1 {
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2; /* Light gray header background */
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9; /* Alternate row color (light gray) */
+    }
+    
+    .search-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    #search-form {
+        display: inline-block;
+    }
+    
+    #search-input {
+        padding: 5px;
+        margin: 0 10px;
+    }
+    
+    #search-button {
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #search-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <h1>School Teachers Data</h1>
+    <div class="search-container">
+        <form id="search-form">
+            <label for="search-input">Search by Name:</label>
+            <input type="text" id="search-input" name="search" placeholder="Enter name...">
+            <button type="button" id="search-button">Search</button>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Salary</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.s_no }}</td>
+            <td>{{ result.name }}</td>
+            <td>{{ result.email }}</td>
+            <td>{{ result.phone }}</td>
+            <td>{{ result.salary }}</td>
+        </tr>
+        {% endfor %}
+       
+    </table>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchButton = document.getElementById("search-button");
+            const searchInput = document.getElementById("search-input");
+            const rows = document.querySelectorAll("table tr");
+
+            searchButton.addEventListener("click", function () {
+                const searchText = searchInput.value.toLowerCase();
+
+                rows.forEach(row => {
+                    const nameColumn = row.querySelector("td:nth-child(2)");
+                    if (nameColumn) {
+                        const name = nameColumn.textContent.toLowerCase();
+                        if (name.includes(searchText)) {
+                            row.style.display = "";
+                        } else {
+                            row.style.display = "none";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

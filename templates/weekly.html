@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 14px; /* Adjust the font size for the entire table */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        select {
+            padding: 5px;
+            width: 100%;
+        }
+
+        #downloadButton {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="classSelector">Select Class:</label>
+    <select id="classSelector">
+        <option value="nursery">Nursery</option>
+        <option value="kg">KG</option>
+        <option value="ukg">UKG</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>
+
+    <table id="timetable">
+        <tr>
+            <th>Day</th>
+            <th>Period 1(8:00-8:40)</th>
+            <th>Period 2(8:40-9:20)</th>
+            <th>Period 3(9:20-10:00)</th>
+            <th>Period 4(10:00-10:40)</th>
+            <th>LUNCH</th>
+            <th>Period 5(11:20-12:00)</th>
+            <th>Period 6(12:00-12:40)</th>
+            <th>Period 7(12:40-1:20)</th>
+            <th>Period 8(1:20-2:00)</th>
+        </tr>
+        <tr id="Monday">
+            <td>Monday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+        <tr id="Tuesday">
+            <td>Tuesday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+        <tr id="Wednesday">
+            <td>Wednesday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+        <tr id="Thursday">
+            <td>Thursday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+        <tr id="Friday">
+            <td>Friday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+        <tr id="Saturday">
+            <td>Saturday</td>
+            <!-- Use JavaScript to populate the dropdowns -->
+        </tr>
+    </table>
+
+    <button id="downloadButton" onclick="downloadTimetable()">Download Timetable</button>
+
+    <script>
+        // Function to populate the dropdowns in each row
+        function populateDropdown(rowId) {
+            const dropdownOptions1 = ['Suman sharma', 'Reena', 'Lajwanti', 'Rekha', 'Mamta', 'Jyoti Chouchan', 'Jyoti Pareek', 'Manipriya', 'Neha', 'Usha'];
+            const dropdownOptions2 = ['English', 'Math', 'Hindi', 'Science', 'Computer', 'GK', 'Sanskrit', 'Physics', 'Chemistry', 'Accounts'];
+
+            const row = document.getElementById(rowId);
+            for (let i = 0; i < 10; i++) {
+                const cell = document.createElement('td');
+
+                if (i === 0) {
+                    cell.textContent = rowId; // Set the text content for the first column
+                } else if (i === 5) {
+                    // Lunch period
+                    cell.textContent = 'LUNCH';
+                } else {
+                    const dropdown1 = document.createElement('select');
+                    dropdown1.name = `period_${i}_option1`;
+                    dropdown1.add(new Option('', '')); // Add an empty option as the default
+                    dropdownOptions1.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.text = option;
+                        dropdown1.add(optionElement);
+                    });
+
+                    const dropdown2 = document.createElement('select');
+                    dropdown2.name = `period_${i}_option2`;
+                    dropdown2.add(new Option('', '')); // Add an empty option as the default
+                    dropdownOptions2.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option;
+                        optionElement.text = option;
+                        dropdown2.add(optionElement);
+                    });
+
+                    cell.appendChild(dropdown1);
+                    cell.appendChild(dropdown2);
+                }
+
+                row.appendChild(cell);
+            }
+        }
+
+        // Function to update the timetable based on the selected class
+        function updateTimetable() {
+            const selectedClass = document.getElementById('classSelector').value;
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            for (const day of days) {
+                const row = document.getElementById(day);
+                while (row.firstChild) {
+                    row.removeChild(row.firstChild);
+                }
+                populateDropdown(day);
+            }
+        }
+
+        // Function to download the timetable
+        function downloadTimetable() {
+            const selectedClass = document.getElementById('classSelector').value;
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            let timetableCSV = 'Day,Period 1 (Teacher), Period 1 (Subject), Period 2 (Teacher), Period 2 (Subject), Period 3 (Teacher), Period 3 (Subject), Period 4 (Teacher), Period 4 (Subject), Period 5 (Teacher), Period 5 (Subject), Period 6 (Teacher), Period 6 (Subject), Period 7 (Teacher), Period 7 (Subject), Period 8 (Teacher), Period 8 (Subject)\n';
+
+            for (const day of days) {
+                const row = document.getElementById(day);
+                const cells = row.getElementsByTagName('td');
+                timetableCSV += cells[0].textContent + ',';
+
+                for (let i = 1; i < cells.length; i++) {
+                    if (i === 5) {
+                        // Lunch period
+                        timetableCSV += 'LUNCH, LUNCH,';
+                    } else {
+                        const dropdowns = cells[i].getElementsByTagName('select');
+                        timetableCSV += `${dropdowns[0].value}, ${dropdowns[1].value},`;
+                    }
+                }
+                timetableCSV += '\n';
+            }
+
+            // Create a Blob and create a download link
+            const blob = new Blob([timetableCSV], { type: 'text/csv' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = `${selectedClass}_Timetable.csv`;
+            link.click();
+        }
+
+        // Add an event listener to the class selector
+        document.getElementById('classSelector').addEventListener('change', updateTimetable);
+
+        // Initial population of the timetable
+        updateTimetable();
+    </script>
+
+</body>
+</html>

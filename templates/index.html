@@ -1,0 +1,436 @@
+{% load static%}
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> index </title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <style>
+      /* ... Existing styles ... */
+    
+      .home-section {
+        margin-left: 5px; /* Adjust the margin-left to the width of your toggle button + small gap */
+        transition: margin-left 0.3s; /* Add transition for smooth effect */
+      }
+    
+      .home-content {
+        margin-left: 5px;
+        transition: margin-left 0.3s; /* Add transition for smooth effect */
+      }
+    
+      /* Add this style to adjust the position of the content based on the toggle button */
+      .text {
+        margin-left: 5px; /* Adjust the margin-left to accommodate the toggle button */
+        transition: margin-left 0.3s; /* Add transition for smooth effect */
+      }
+    
+      /* Add this style to make the content wider when the menu is open */
+      .menu-container.open + .home-section {
+        margin-left: 300px; /* Adjust the margin-left to the width of your sidebar */
+      }
+    
+      .menu-container.open + .home-content {
+        margin-left: 320px; /* Adjust the margin-left to provide a small gap between the sidebar and content */
+      }
+    
+      .menu-container.open + .text {
+        margin-left: 330px; /* Adjust the margin-left to provide a small gap between the sidebar and content */
+      }
+    </style>
+    
+      
+     <script>
+        function loadDepartment(departmentName) {
+          const url = `/departments/${departmentName}.html/`;
+          console.log("URL to load:", url);
+          $.ajax({
+              url: url,
+              type: 'GET',
+              success: function (data) {
+                  $('#departmentContent').html(data); // Load content into the 'departmentContent' div
+              },
+              error: function (error) {
+                  console.error(error);
+              }
+          });
+        }
+      
+
+        // You can define a function to handle the initial load (e.g., dashboard)
+        function loadDashboard() {
+            // Load the dashboard content
+            loadDepartment('dashboard');
+        }
+
+        function toggleMenu() {
+          var menuContainer = document.querySelector('.menu-container');
+          
+          // Check if menuContainer is not null before accessing its properties
+          if (menuContainer && menuContainer.classList.contains('open')) {
+              menuContainer.classList.remove('open');
+          } else if (menuContainer) {
+              menuContainer.classList.add('open');
+          }
+      }
+        $(document).ready(function () {
+            // Load the dashboard content when the page loads
+            loadDashboard();
+
+           
+        });
+        
+    </script>
+  </head>
+  <body style="background: rgb(228, 233, 247);">
+    <div class="sidebar close">
+      <div class="logo-details">
+        
+        <span class="logo_name"><a href="#" onclick="loadDepartment('dashboard')" class="logo"><img class="logo" src="{% static 'photos/logo2.png' %}" alt="Logo"></a></span>
+      </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name" onclick = "loadDepartment('dashboard')"> ERP Dashboard</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Student</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-collection' ></i>
+              <span class="link_name">Student</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#" >Student</a></li>
+            <li><a href="#"onclick = "loadDepartment('student_form')">Admission Form</a></li>
+            <li><a href="#" onclick = "loadDepartment('student_details')">Student Details</a></li>
+            <li><a href="#" onclick = "loadDepartment('groupby')">Group By</a></li>
+            <li><a href="#" onclick = "loadDepartment('leave')">Leave</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-collection' ></i>
+              <span class="link_name">TimeTable</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#" >TimeTable</a></li>
+            <li><a href="#"onclick = "loadDepartment('timetable')">Day Wise</a></li>
+            <li><a href="#" onclick = "loadDepartment('weekly')">Weekly Wise</a></li>
+            <li><a href="#" onclick = "loadDepartment('leave')">Teacher Wise</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <div class="iocn-link">
+            <a href="#">
+              <i class='bx bx-line-chart' ></i>
+              <span class="link_name">Account</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow' ></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#" >Account</a></li>
+            <li><a href="#"onclick = "loadDepartment('setpaper')">Add Bank Account</a></li>
+            <li><a href="#" onclick = "loadDepartment('accounts')">Account List</a></li>
+            <li><a href="#"onclick = "loadDepartment('staff')">Add Income/Expense</a></li>
+            <li><a href="#" onclick = "loadDepartment('staff_details')">Income/Expense List</a></li>
+            <li><a href="#"onclick = "loadDepartment('staff')">Leader Information</a></li>
+          </ul>
+        </li>
+
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+            <i class='bx bx-book-alt' ></i>
+          <span class="link_name">Fee Detail</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#" >Fee Detail</a></li>
+        <li><a href="#"onclick = "loadDepartment('receipt')">Recent Month</a></li>
+        <li><a href="#" onclick = "loadDepartment('dues')">Fees Structure</a></li>
+        <li><a href="#" onclick = "loadDepartment('penalty')">Discount Structure</a></li>
+        <li><a href="#"onclick = "loadDepartment('receipt')">Set Fees</a></li>
+        <li><a href="#" onclick = "loadDepartment('dues')">ClassWise Set Fees</a></li>
+        <li><a href="#" onclick = "loadDepartment('penalty')">Pay Fees</a></li>
+        <li><a href="#"onclick = "loadDepartment('receipt')">Fees Details</a></li>
+        <li><a href="#" onclick = "loadDepartment('dues')">Dues List and SMS</a></li>
+        <li><a href="#" onclick = "loadDepartment('penalty')">Report Panel</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="iocn-link">
+        <a href="#" onclick = "loadDepartment('timetable')">
+          <i class='bx bx-compass' ></i>
+          <span class="link_name" >Dues</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#" >Dues</a></li>
+        <li><a href="#"onclick = "loadDepartment('dues')">Dues Nursery</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Dues L.K.G</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Dues U.K.G</a></li>
+        <li><a href="#"onclick = "loadDepartment('dues')">Dues 1st</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Dues 2nd</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Dues 3rd</a></li>
+        <li><a href="#"onclick = "loadDepartment('dues')">Dues 4th</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Dues 5th</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Dues 6th</a></li>
+        <li><a href="#"onclick = "loadDepartment('dues')">Dues 7th</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Dues 8th</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Dues 9th</a></li>
+        <li><a href="#"onclick = "loadDepartment('dues')">Dues 10th</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Dues 11th</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Dues 12th</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-collection' ></i>
+          <span class="link_name">Enquiry</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#" >Enquiry</a></li>
+        <li><a href="#"onclick = "loadDepartment('setpaper')">New Enquiry</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Enquiry List</a></li>
+        <li><a href="#"onclick = "loadDepartment('staff')">Enquiry SMS</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <div class="iocn-link">
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name">Penalty</span>
+        </a>
+        <i class='bx bxs-chevron-down arrow' ></i>
+      </div>
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#" >Penalty</a></li>
+        <li><a href="#"onclick = "loadDepartment('setpaper')">Penalty Form</a></li>
+        <li><a href="#" onclick = "loadDepartment('staff_details')">Penalty List</a></li>
+      </ul>
+    </li>
+
+    <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="link_name">Examination</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >Examination</a></li>
+          <li><a href="#"onclick = "loadDepartment('timetable')">Time Table</a></li>
+          <li><a href="#" onclick = "loadDepartment('result')">Result</a></li>
+          
+        </ul>
+      </li>
+
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Homework</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >Homework</a></li>
+          <li><a href="#"onclick = "loadDepartment('setpaper')">Add Homework</a></li>
+          <li><a href="#" onclick = "loadDepartment('homework')">Homework List</a></li>
+        </ul>
+      </li>
+      
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-pie-chart-alt-2' ></i>
+            <span class="link_name">Important Notice</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >Important  Notice</a></li>
+          <li><a href="#" onclick = "loadDepartment('events')">Events</a></li>
+          <li><a href="#" onclick = "loadDepartment('holidays')">Holidays</a></li>
+          <li><a href="#" onclick = "loadDepartment('download')">Downloads</a></li>
+          <li><a href="#" onclick = "loadDepartment('important')">Notice</a></li>
+          
+        </ul>
+      </li>
+
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-line-chart' ></i>
+            <span class="link_name">Staff</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >Staff</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Employee List</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Dropped List</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Attendance</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">SalaryDetails</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">ID Generate</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Face Detection Attendance</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <div class="iocn-link">
+          <a href="#" onclick = "loadDepartment('setpaper')">
+            <i class='bx bx-history'></i>
+            <span class="link_name" >Set Paper</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >Set Paper</a></li>
+          <li><a href="#"onclick = "loadDepartment('setpaper')">Add Question</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">View Question</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Instant Paper</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Set Paper</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Paper List</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('certificate')">
+          <i class='bx bx-plug' ></i>
+          <span class="link_name" >Certificate</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Certificate</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('complaint')">
+          <i class='bx bx-compass' ></i>
+          <span class="link_name" >Complaints</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Complaints</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('gallery')">
+          <i class='bx bx-history'></i>
+          <span class="link_name" >Gallery</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Gallery</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('sports')">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name" >Sports</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Sports</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('bus')">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name" >Transportation</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Transportation</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('hostel')">
+          <i class='bx bx-pie-chart-alt-2' ></i>
+          <span class="link_name" >Hostel</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Hostel</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" onclick = "loadDepartment('library')">
+          <i class='bx bx-collection' ></i>
+          <span class="link_name" >Library</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#" >Library</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-line-chart' ></i>
+            <span class="link_name">WhatsApp-Messages</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#" >WhatsApp-Messages</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Send SMS</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Student SMS</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Attendance SMS</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Fee SMS</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Birthday SMS</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Staff SMS</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">SMS Templates</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Add Group</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Add Group Staff</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Group Student</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Group Teacher</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Group SMS</a></li>
+          <li><a href="#"onclick = "loadDepartment('staff')">Bus SMS</a></li>
+          <li><a href="#" onclick = "loadDepartment('staff_details')">Voice call</a></li>
+        </ul>
+      </li>
+   
+    <div class="profile-details">
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="logout-button">LOGOUT</a>
+      {% endif %}
+    </div>
+  </li>
+</ul>
+  </div>
+  <section class="home-section" >
+    <div class="home-content" >
+      <i class='bx bx-menu' ></i>
+      <span class="text" id = "departmentContent" >Drop Down Sidebar</span>
+    </div>
+  </section>
+  <script src="/static/js/script.js"></script>
+</body>
+</html>

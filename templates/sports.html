@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Sports</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color:rgb(28, 39, 79);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header styles */
+        header {
+            background-color: rgb(28, 39, 79);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: white;
+            text-align: center;
+           }
+
+        nav ul {
+            list-style-type: none;
+            padding: 10px;
+            
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 50px;
+            color: rgb(28, 39, 79);
+        }
+
+        nav ul li:last-child {
+            margin-right: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            color: rgb(28, 39, 79);
+        }
+
+        /* Main content container */
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sports section */
+        .sports {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sports h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .sports p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Footer styles */
+        .footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin-top: 20px;
+        width: 100%;
+        padding: 15px;
+        background-color: white;
+        color: rgb(28, 39, 79);
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>School Sports</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Sports Teams</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="sports">
+            <h2>Welcome to Our School Sports Program</h2>
+            <p>Discover the exciting world of sports at our school. Join one of our teams and participate in thrilling events!</p>
+        </section>
+        
+        <!-- Add more sections for sports teams, events, gallery, etc. -->
+
+    </div>
+
+    {% comment %} <footer class="footer">
+        <p>&copy; 2023 School Examination Result Portal</p>
+    </footer> {% endcomment %}
+</body>
+</html>

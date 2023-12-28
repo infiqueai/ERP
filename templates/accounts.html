@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Page</title>
+    <style>
+        .searchable-dropdown {
+            width: 100%;
+            padding: 6px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            font-size: 8px; 
+        }
+
+        .container {
+            max-width: 5000px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 8px; 
+        }
+
+        .header {
+            background-color: black;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 25px; 
+        }
+
+        .fee-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .options button {
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            margin-left: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .options button:hover {
+            background-color: #27ae60;
+        }
+
+        .table-container {
+            margin: 20px;
+            overflow-x: auto;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px; 
+        }
+
+        th, td {
+            padding: 8px; 
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        input {
+            width: 100%;
+            padding: 6px; 
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+
+        .container button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 8px 16px; 
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .container button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="fee-box">
+            <p>Students Fee</p>
+            <div class="options">
+                <button onclick="importData()">Import</button>
+                <button onclick="deleteRow()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <table id="feeTable">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>
+                        <div>Session</div>
+                        <select class="searchable-dropdown">
+                            <option value="session1">2016-2017</option>
+                            <option value="session2">2017-2018</option>
+                            <option value="session3">2018-2019</option>
+                            <option value="session4">2019-2020</option>
+                            <option value="session5">2020-2021</option>
+                            <option value="session1">2021-2022</option>
+                            <option value="session2">2022-2023</option>
+                            <option value="session3">2023-2024</option>
+                            <option value="session4">2024-2025</option>
+                            <option value="session5">2025-2026</option>
+                            <option value="session11">2026-2027</option>
+                            <option value="session12">2027-2028</option>
+                            <option value="session13">2028-2029</option>
+                            <option value="session13">2029-2030</option>
+                        </select>
+                    </th>
+                    <th>
+                        <div>Class</div>
+                        <select class="searchable-dropdown">
+                            <option value="class1">Nursery</option>
+                            <option value="class2">L.K.G</option>
+                            <option value="class1">U.K.G</option>
+                            <option value="class2">First</option>
+                            <option value="class1">Second</option>
+                            <option value="class2">Third</option>
+                            <option value="class1">Fourth</option>
+                            <option value="class2">Fifth</option>
+                            <option value="class1">Sixth</option>
+                            <option value="class2">Seventh</option>
+                            <option value="class1">Eight</option>
+                            <option value="class2">Nineth</option>
+                            <option value="class1">Tenth</option>
+                            <option value="class2">Eleventh</option>
+                            <option value="class1">Twelth</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </th>
+                    <th>
+                        <div>Student</div>
+                        <input type="text" class="searchable-dropdown" placeholder="Search Student">
+                    </th>
+                    <th>
+                        <div>Admission No</div>
+                        <input type="text" class="searchable-dropdown" placeholder="Search Admission No">
+                    </th>
+                    <th>
+                        <div>Fee</div>
+                        <select class="searchable-dropdown">
+                            <option value="fee1">1 Quarter</option>
+                            <option value="fee2">2 Quarter</option>
+                            <option value="fee1">3 Quarter</option>
+                            <option value="fee2">4 Quarter</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </th>
+                    <th>Receipts</th>
+                    <th>Total Paid</th>
+                    <th>
+                        <div>Amount</div>
+                        <input type="text" class="searchable-dropdown" placeholder="Search Amount">
+                    </th>
+                    <th>
+                        <div>Status</div>
+                        <select class="searchable-dropdown">
+                            <option value="status1">Paid</option>
+                            <option value="status2">Unpaid</option>
+                        </select>
+                    </th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                {% for fee_entry in account_data %}
+                    <tr>
+                        <td>{{ fee_entry.S_no }}</td>
+                        <td>{{ fee_entry.Session }}</td>
+                        <td>{{ fee_entry.Class }}</td>
+                        <td>{{ fee_entry.StudentName }}</td>
+                        <td>{{ fee_entry.AdmissionNo }}</td>
+                        <td>{{ fee_entry.Fee }}</td>
+                        <td>{{ fee_entry.Receipts }}</td>
+                        <td>{{ fee_entry.TotalPaid }}</td>
+                        <td>{{ fee_entry.Amount }}</td>
+                        <td>{{ fee_entry.Status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+
+    <button onclick="addRow()">Add Row</button>
+</div>
+
+<script>
+    function addRow() {
+        var tableBody = document.getElementById('tableBody');
+        var newRow = tableBody.insertRow(tableBody.rows.length);
+
+        for (var i = 0; i < 10; i++) {
+            var cell = newRow.insertCell(i);
+            var input = document.createElement('input');
+            input.type = 'text';
+            cell.appendChild(input);
+        }
+    }
+
+    // Function to delete the last row from the table
+    function deleteRow() {
+        var tableBody = document.getElementById('tableBody');
+        if (tableBody.rows.length > 0) {
+            tableBody.deleteRow(tableBody.rows.length - 1);
+        }
+    }
+
+    // Function to simulate data import
+    function importData() {
+        // You can implement the actual import logic here
+        alert('Import functionality to be implemented.');
+    }
+</script>
+</body>
+</html>
+
