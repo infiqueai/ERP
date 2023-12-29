@@ -120,7 +120,7 @@ from .models import CommonStudent
 
 class Table1(CommonStudent):
     class Meta:
-        db_table = 'table1'
+        db_table = '2021-2022'
 
 class Table2(CommonStudent):
     class Meta:
