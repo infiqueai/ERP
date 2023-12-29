@@ -113,6 +113,8 @@ class CommonStudent(models.Model):
     MotherCommunicationOn = models.CharField(max_length=255)
     SessionSequenceNumber = models.IntegerField()
     ClassSequenceNumber = models.IntegerField()
+    startyear= models.IntegerField()
+    endyear= models.IntegerField()
 
     class Meta:
         abstract = True
@@ -124,4 +126,4 @@ class Table1(CommonStudent):
 
 class Table2(CommonStudent):
     class Meta:
-        db_table = 'table2'
+        db_table = '2020-2021'

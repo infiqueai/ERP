@@ -32,8 +32,8 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            margin-left: 20px; /* Adjust the margin-left as needed */
-            height: 800px; /* Adjust the height as needed */
+            margin-left: 20px;
+            height: 800px; 
         }
 
         .row {
@@ -49,7 +49,7 @@
         label {
             margin-bottom: 5px;
             font-weight: bold;
-            font-size: 14px; /* Adjust the font size */
+            font-size: 14px; 
         }
 
         input,
@@ -60,7 +60,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
-            font-size: 14px; /* Adjust the font size */
+            font-size: 14px; 
         }
 
         button {
@@ -69,9 +69,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 10px;
-            align-self: flex-end; /* Align button to the right */
-            width: auto; /* Adjust the width as needed */
-            padding: 10px; /* Adjust the padding as needed */
+            align-self: flex-end; 
+            width: auto; 
+            padding: 10px; 
         }
 
         button:hover {
@@ -94,7 +94,7 @@
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
-            font-size: 14px; /* Adjust the font size */
+            font-size: 14px; 
         }
 
         th {
@@ -109,7 +109,8 @@
 </head>
 
 <body>
-
+    <form id="searchForm" method="post" action="{% url 'groupby' %}">
+        {% csrf_token %}
     <div class="container">
         <div class="row">
             <div class="column">
@@ -118,6 +119,7 @@
                     <option value="2022-2023">2022-2023</option>
                     <option value="2021-2022">2021-2022</option>
                     <option value="2020-2021">2020-2021</option>
+                    <option value="2020-2021">2019-2020</option>
                     <!-- Add more options as needed -->
                 </select>
             </div>
@@ -152,19 +154,90 @@
 
         <button type="button" onclick="searchAndOpenTable()">Search</button>
         <button type="button" onclick="clearFormFields()">Clear</button>
+    </form>
 
         <div id="studentTableContainer">
             <table id="studentTable">
-                <!-- Table header will be dynamically populated -->
                 <tr id="tableHeader">
-                    <!-- Table header columns will be dynamically populated -->
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Admission Number</th>
+                    <th>Admission Session</th>
+                    <th>Admission Class</th>
+                    <th>Admission Date</th>
+                    <th>Gender</th>
+                    <th>Nationality</th>
+                    <th>Religion</th>
+                    <th>Category</th>
+                    <th>Date of Birth</th>
+                    <th>Blood Group</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Pin Code</th>
+                    <th>Is E-mandate Required</th>
+                    <th>Father Name</th>
+                    <th>Father Address</th>
+                    <th>Father City</th>
+                    <th>Father Annual Income</th>
+                    <th>Father Mobile</th>
+                    <th>Father Communication On</th>
+                    <th>Father Primary</th>
+                    <th>Mother Name</th>
+                    <th>Mother Address</th>
+                    <th>Mother City</th>
+                    <th>Mother Annual Income</th>
+                    <th>Mother Mobile</th>
+                    <th>Mother Communication On</th>
+                    <th>Session Sequence Number</th>
+                    <th>Class Sequence Number</th>
+                    <th>Start Year</th>
+                    <th>End Year</th>
+                    
                 </tr>
-                <!-- Existing table content goes here -->
+                {% for entry in data %}
+                <tr>
+                    <td>{{ entry.ID }}</td>
+                    <td>{{ entry.Name }}</td>
+                    <td>{{ entry.AdmissionNumber }}</td>
+                    <td>{{ entry.AdmissionSession }}</td>
+                    <td>{{ entry.AdmissionClass }}</td>
+                    <td>{{ entry.AdmissionDate }}</td>
+                    <td>{{ entry.Gender }}</td>
+                    <td>{{ entry.Nationality }}</td>
+                    <td>{{ entry.Religion }}</td>
+                    <td>{{ entry.Category }}</td>
+                    <td>{{ entry.DateofBirth }}</td>
+                    <td>{{ entry.BloodGroup }}</td>
+                    <td>{{ entry.Address }}</td>
+                    <td>{{ entry.City }}</td>
+                    <td>{{ entry.PinCode }}</td>
+                    <td>{{ entry.IsEmandateRequired }}</td>
+                    <td>{{ entry.FatherName }}</td>
+                    <td>{{ entry.FatherAddress }}</td>
+                    <td>{{ entry.FatherCity }}</td>
+                    <td>{{ entry.FatherAnnualIncome }}</td>
+                    <td>{{ entry.FatherMobile }}</td>
+                    <td>{{ entry.FatherCommunicationOn }}</td>
+                    <td>{{ entry.FatherPrimary }}</td>
+                    <td>{{ entry.MotherName }}</td>
+                    <td>{{ entry.MotherAddress }}</td>
+                    <td>{{ entry.MotherCity }}</td>
+                    <td>{{ entry.MotherAnnualIncome }}</td>
+                    <td>{{ entry.MotherMobile }}</td>
+                    <td>{{ entry.MotherCommunicationOn }}</td>
+                    <td>{{ entry.SessionSequenceNumber }}</td>
+                    <td>{{ entry.ClassSequenceNumber }}</td>
+                    <td>{{ entry.startyear }}</td>
+                    <td>{{ entry.endyear }}</td>
+                </tr>
+                {% endfor %}
             </table>
+            
         </div>
     </div>
 
     <script>
+        
         function searchAndOpenTable() {
             var session = document.getElementById("session").value;
             var selectedClass = document.getElementById("class").value;
@@ -173,23 +246,33 @@
             var fatherName = document.getElementById("fatherName").value;
             var fatherMobileNumber = document.getElementById("fatherMobileNumber").value;
 
-            // You can use these values to make an AJAX request to your server
-            // and fetch the corresponding data from the database.
-            // For simplicity, we will use a static example data here.
-            var exampleData = [
-                { ID: 1, Name: "John Doe", Class: "10th", AdmissionNumber: "12345", FatherName: "Mr. Doe", FatherMobileNumber: "9876543210" },
-                { ID: 2, Name: "Jane Doe", Class: "9th", AdmissionNumber: "54321", FatherName: "Mr. Doe Sr.", FatherMobileNumber: "9876543211" }
-            ];
-
-            populateStudentTable(exampleData);
-            document.getElementById("studentTableContainer").style.display = "block";
+            fetch('{% url "search_data" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    session: session,
+                    class: selectedClass,
+                    name: name,
+                    admissionNumber: admissionNumber,
+                    fatherName: fatherName,
+                    fatherMobileNumber: fatherMobileNumber
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                populateStudentTable(data);
+                document.getElementById("studentTableContainer").style.display = "block";
+            })
+            .catch(error => console.error('Error:', error));
         }
 
         function populateStudentTable(data) {
             var table = document.getElementById("studentTable");
             var headerRow = document.getElementById("tableHeader");
 
-            // Clear existing rows and headers
             while (table.rows.length > 0) {
                 table.deleteRow(0);
             }
@@ -197,13 +280,11 @@
                 headerRow.deleteCell(0);
             }
 
-            // Populate headers dynamically based on the data received
             for (var key in data[0]) {
                 var headerCell = headerRow.insertCell(-1);
                 headerCell.innerHTML = key;
             }
 
-            // Add rows based on the fetched data
             data.forEach(entry => {
                 var row = table.insertRow(-1);
                 for (var key in entry) {

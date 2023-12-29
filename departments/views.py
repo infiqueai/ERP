@@ -63,7 +63,23 @@ def accounts(request):
 def Graphical(request):
     return render(request, 'graphical.html')
 
+
+from .forms import CommonStudentForm, Table1Form, Table2Form
+from .models import Table1, Table2
+
 def groupby(request):
+    if request.method == 'POST':
+        session = request.POST.get('session')
+
+        if session == '2021-2022':
+            data = Table1.objects.all()
+        elif session == '2020-2021':
+            data = Table2.objects.all()
+        else:
+            data = CommonStudent.objects.all()
+
+        return render(request, 'groupby.html', {'data': data, 'session': session})
+    
     return render(request, 'groupby.html')
 
 def student_form(request):
