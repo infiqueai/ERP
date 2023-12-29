@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ADMISSION FORM</title>
+</head>
+<body>
+<h1>Admission Form</h1>
+<h2>Beacon Public School</h2>
+<hr/>
+<form method="POST" action="{% url 'Insertrecord' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    Student Name: <input type="text" placeholder="Enter Student Name" name="studentname" required/><br/>
+    Father Name: <input type="text" placeholder="Enter Father Name" name="fathername" required/><br/>
+    Mother Name: <input type="text" placeholder="Enter Mother Name" name="mothername" required/><br/>
+    Class: <input type="text" placeholder="Enter Class" name="Class" required/><br/>
+    Age: <input type="text" placeholder="Enter Age" name="age" required/><br/>
+    Mobile Number: <input type="text" placeholder="Enter Mobile No" name="mobilenumber" required/><br/>
+    Address: <input type="text" placeholder="Enter Address" name="address" required/><br/>
+    <input type="submit" value="Insert Record"/>
+</form>
+<hr/>
+</body>
+</html>

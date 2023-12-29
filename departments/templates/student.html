@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    
+    background-color: rgb(28, 39, 79);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table, th, td {
+    border: 3px solid white;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: rgb(28, 39, 79);
+  }
+
+  .search-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  #search-input {
+    padding: 5px;
+    width: 70%;
+  }
+
+  #search-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  #search-button:hover {
+    background-color: #0056b3;
+  }
+</style>
+<title>Student Information</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Staff Information</h1>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search by Name...">
+      <button type="button" id="search-button">Search</button>
+    </div>
+    <table>
+      <tr>
+        <th>Phone number</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Email</th>
+      </tr>
+      {% for result in results %}
+      <tr class="staff-card">
+          <td>{{ result.Phone_number }}</td>
+          <td>{{ result.name }}</td>
+          <td>{{ result.age }}</td>
+          <td>{{ result.email }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const searchButton = document.getElementById("search-button");
+      const searchInput = document.getElementById("search-input");
+      const rows = document.querySelectorAll("table tr.staff-card");
+
+      searchButton.addEventListener("click", function () {
+        const searchText = searchInput.value.toLowerCase();
+
+        rows.forEach(row => {
+          const name = row.querySelector("td:nth-child(2)").textContent.toLowerCase();
+          if (name.includes(searchText)) {
+            row.style.display = "table-row";
+          } else {
+            row.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

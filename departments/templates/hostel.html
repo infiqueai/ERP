@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Hostel Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(28, 39, 79);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+
+        table,
+        th,
+        td {
+            border: 3px solid #333;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgb(28, 39, 79);
+            color: white;
+            border-color: white;
+        }
+
+        .footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            margin-top: 20px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            color: rgb(28, 39, 79);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>School Hostel Information</h1>
+
+    <table>
+        <tr>
+            <th>Hostel Name</th>
+            <th>Number of Wards</th>
+            <th>Number of Rooms</th>
+        </tr>
+        <tr>
+            <td><a href="/hostel/hostel_A.html">Hostel A</a></td>
+            <td>50</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td><a href="/hostel/hostel_B.html">Hostel B</a></td>
+            <td>40</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td><a href="/hostel/hostel_C.html">Hostel C</a></td>
+            <td>60</td>
+            <td>30</td>
+        </tr>
+        <!-- Add more rows for additional hostels -->
+    </table>
+    {% comment %} <footer class="footer">
+        &copy; 2023 School Holidays
+    </footer> {% endcomment %}
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: left;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            justify-content: left;
+            box-sizing: border-box;
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-left: 20px; /* Adjust the margin-left as needed */
+            height: 800px; /* Adjust the height as needed */
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .column {
+            flex: 0 0 calc(33.33% - 10px);
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px; /* Adjust the font size */
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px; /* Adjust the font size */
+        }
+
+        button {
+            background-color: #000;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            align-self: flex-end; /* Align button to the right */
+            width: auto; /* Adjust the width as needed */
+            padding: 10px; /* Adjust the padding as needed */
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        #studentTableContainer {
+            display: none;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px; /* Adjust the font size */
+        }
+
+        th {
+            background-color: #000;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="column">
+                <label for="session">Session:</label>
+                <select id="session" name="session">
+                    <option value="2022-2023">2022-2023</option>
+                    <option value="2021-2022">2021-2022</option>
+                    <option value="2020-2021">2020-2021</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+
+            <div class="column">
+                <label for="class">Class:</label>
+                <input type="text" id="class" name="class">
+            </div>
+
+            <div class="column">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="column">
+                <label for="admissionNumber">Admission Number:</label>
+                <input type="text" id="admissionNumber" name="admissionNumber">
+            </div>
+
+            <div class="column">
+                <label for="fatherName">Father's Name:</label>
+                <input type="text" id="fatherName" name="fatherName">
+            </div>
+
+            <div class="column">
+                <label for="fatherMobileNumber">Father's Mobile Number:</label>
+                <input type="text" id="fatherMobileNumber" name="fatherMobileNumber">
+            </div>
+        </div>
+
+        <button type="button" onclick="searchAndOpenTable()">Search</button>
+        <button type="button" onclick="clearFormFields()">Clear</button>
+
+        <div id="studentTableContainer">
+            <table id="studentTable">
+                <!-- Table header will be dynamically populated -->
+                <tr id="tableHeader">
+                    <!-- Table header columns will be dynamically populated -->
+                </tr>
+                <!-- Existing table content goes here -->
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function searchAndOpenTable() {
+            var session = document.getElementById("session").value;
+            var selectedClass = document.getElementById("class").value;
+            var name = document.getElementById("name").value;
+            var admissionNumber = document.getElementById("admissionNumber").value;
+            var fatherName = document.getElementById("fatherName").value;
+            var fatherMobileNumber = document.getElementById("fatherMobileNumber").value;
+
+            // You can use these values to make an AJAX request to your server
+            // and fetch the corresponding data from the database.
+            // For simplicity, we will use a static example data here.
+            var exampleData = [
+                { ID: 1, Name: "John Doe", Class: "10th", AdmissionNumber: "12345", FatherName: "Mr. Doe", FatherMobileNumber: "9876543210" },
+                { ID: 2, Name: "Jane Doe", Class: "9th", AdmissionNumber: "54321", FatherName: "Mr. Doe Sr.", FatherMobileNumber: "9876543211" }
+            ];
+
+            populateStudentTable(exampleData);
+            document.getElementById("studentTableContainer").style.display = "block";
+        }
+
+        function populateStudentTable(data) {
+            var table = document.getElementById("studentTable");
+            var headerRow = document.getElementById("tableHeader");
+
+            // Clear existing rows and headers
+            while (table.rows.length > 0) {
+                table.deleteRow(0);
+            }
+            while (headerRow.cells.length > 0) {
+                headerRow.deleteCell(0);
+            }
+
+            // Populate headers dynamically based on the data received
+            for (var key in data[0]) {
+                var headerCell = headerRow.insertCell(-1);
+                headerCell.innerHTML = key;
+            }
+
+            // Add rows based on the fetched data
+            data.forEach(entry => {
+                var row = table.insertRow(-1);
+                for (var key in entry) {
+                    var cell = row.insertCell(-1);
+                    cell.innerHTML = entry[key];
+                }
+            });
+        }
+
+        function clearFormFields() {
+            document.getElementById("session").value = "";
+            document.getElementById("class").value = "";
+            document.getElementById("name").value = "";
+            document.getElementById("admissionNumber").value = "";
+            document.getElementById("fatherName").value = "";
+            document.getElementById("fatherMobileNumber").value = "";
+
+            document.getElementById("studentTableContainer").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

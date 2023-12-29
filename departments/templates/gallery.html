@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slideshow Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add any specific styles for this page here */
+        body {
+            font-family: Arial, sans-serif;
+            
+            background-color: rgb(28, 39, 79);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Slides */
+        .mySlides {
+            display: none;
+        }
+
+        /* Slideshow navigation dots */
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Slideshow Gallery</h1>
+    <div class="container">
+       
+
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="mySlides">
+                <img src="image1.jpg" alt="Image 1" style="width:100%">
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="mySlides">
+                <img src="image2.jpg" alt="Image 2" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="image2.jpg" alt="Image 2" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="image3.jpg" alt="Image 2" style="width:100%">
+            </div>
+            <div class="mySlides">
+                <img src="image4.jpg" alt="Image 2" style="width:100%">
+            </div>
+
+            <!-- Add more slides here -->
+
+            <!-- Navigation dots -->
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <!-- Add more dots as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the image slideshow
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            const dots = document.getElementsByClassName("dot");
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            
+            slideIndex++;
+            
+            if (slideIndex > slides.length) {
+                slideIndex = 1;
+            }
+            
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            
+            setTimeout(showSlides, 3000); // Change image every 3 seconds
+        }
+    </script>
+</body>
+</html>
