@@ -266,6 +266,42 @@ def submit_receipt(request):
 
     return render(request, 'receipt.html', {'form': form})
 
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from .models import Table1, Table2  
+
+@require_POST
+def search_data(request):
+    session = request.POST.get('session')
+    selected_class = request.POST.get('class')
+    name = request.POST.get('name')
+    admission_number = request.POST.get('admissionNumber')
+    father_name = request.POST.get('fatherName')
+    father_mobile_number = request.POST.get('fatherMobileNumber')
+
+   
+    search_results_table1 = Table1.objects.filter(
+        AdmissionSession=session,
+        AdmissionClass=selected_class,
+        Name__icontains=name,
+        AdmissionNumber__icontains=admission_number,
+        FatherName__icontains=father_name,
+        FatherMobile__icontains=father_mobile_number
+    ).values()
+
+    search_results_table2 = Table2.objects.filter(
+        AdmissionSession=session,
+        AdmissionClass=selected_class,
+        Name__icontains=name,
+        AdmissionNumber__icontains=admission_number,
+        FatherName__icontains=father_name,
+        FatherMobile__icontains=father_mobile_number
+    ).values()
+
+   
+    search_results = list(search_results_table1) + list(search_results_table2)
+    return JsonResponse(search_results, safe=False)
+
 
 
 

@@ -50,5 +50,6 @@ urlpatterns = [
     path('departments/salestarget.html/', views.salestarget, name='salestarget'), 
     path('departments/accounts.html/', views.accounts, name='accounts'),
     path('departments/groupby.html/', views.groupby, name='groupby'),
+    path('search_data/', views.search_data, name='search_data'),
     
 ]

@@ -245,14 +245,14 @@
             var admissionNumber = document.getElementById("admissionNumber").value;
             var fatherName = document.getElementById("fatherName").value;
             var fatherMobileNumber = document.getElementById("fatherMobileNumber").value;
-
+        
             fetch('{% url "search_data" %}', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                     'X-CSRFToken': '{{ csrf_token }}'
                 },
-                body: JSON.stringify({
+                body: new URLSearchParams({
                     session: session,
                     class: selectedClass,
                     name: name,
@@ -268,6 +268,7 @@
             })
             .catch(error => console.error('Error:', error));
         }
+        
 
         function populateStudentTable(data) {
             var table = document.getElementById("studentTable");
