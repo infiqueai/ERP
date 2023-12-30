@@ -85,8 +85,6 @@ class CommonStudent(models.Model):
     Id = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=255)
     AdmissionNumber = models.CharField(max_length=20)
-    AdmissionSession = models.CharField(max_length=10)
-    AdmissionClass = models.CharField(max_length=10)
     AdmissionDate = models.DateField()
     Gender = models.CharField(max_length=10)
     Nationality = models.CharField(max_length=50)

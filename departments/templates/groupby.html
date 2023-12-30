@@ -162,8 +162,6 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Admission Number</th>
-                    <th>Admission Session</th>
-                    <th>Admission Class</th>
                     <th>Admission Date</th>
                     <th>Gender</th>
                     <th>Nationality</th>
@@ -199,8 +197,6 @@
                     <td>{{ entry.ID }}</td>
                     <td>{{ entry.Name }}</td>
                     <td>{{ entry.AdmissionNumber }}</td>
-                    <td>{{ entry.AdmissionSession }}</td>
-                    <td>{{ entry.AdmissionClass }}</td>
                     <td>{{ entry.AdmissionDate }}</td>
                     <td>{{ entry.Gender }}</td>
                     <td>{{ entry.Nationality }}</td>
@@ -246,27 +242,33 @@
             var fatherName = document.getElementById("fatherName").value;
             var fatherMobileNumber = document.getElementById("fatherMobileNumber").value;
         
-            fetch('{% url "search_data" %}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'X-CSRFToken': '{{ csrf_token }}'
-                },
-                body: new URLSearchParams({
-                    session: session,
-                    class: selectedClass,
-                    name: name,
-                    admissionNumber: admissionNumber,
-                    fatherName: fatherName,
-                    fatherMobileNumber: fatherMobileNumber
+                fetch('{% url "search_data" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: new URLSearchParams({
+                        session: session,
+                        class: selectedClass,
+                        name: name,
+                        admissionNumber: admissionNumber,
+                        fatherName: fatherName,
+                        fatherMobileNumber: fatherMobileNumber
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                populateStudentTable(data);
-                document.getElementById("studentTableContainer").style.display = "block";
-            })
-            .catch(error => console.error('Error:', error));
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok. Status: ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    populateStudentTable(data);
+                    document.getElementById("studentTableContainer").style.display = "block";
+                })
+                .catch(error => console.error('Error:', error));
+            
         }
         
 

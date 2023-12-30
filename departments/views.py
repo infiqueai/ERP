@@ -279,10 +279,9 @@ def search_data(request):
     father_name = request.POST.get('fatherName')
     father_mobile_number = request.POST.get('fatherMobileNumber')
 
-   
     search_results_table1 = Table1.objects.filter(
-        AdmissionSession=session,
-        AdmissionClass=selected_class,
+        startyear=session,
+        ClassSequenceNumber=selected_class,
         Name__icontains=name,
         AdmissionNumber__icontains=admission_number,
         FatherName__icontains=father_name,
@@ -290,17 +289,19 @@ def search_data(request):
     ).values()
 
     search_results_table2 = Table2.objects.filter(
-        AdmissionSession=session,
-        AdmissionClass=selected_class,
+        startyear=session,
+        ClassSequenceNumber=selected_class,
         Name__icontains=name,
         AdmissionNumber__icontains=admission_number,
         FatherName__icontains=father_name,
         FatherMobile__icontains=father_mobile_number
     ).values()
 
-   
+    
     search_results = list(search_results_table1) + list(search_results_table2)
+
     return JsonResponse(search_results, safe=False)
+
 
 
 
