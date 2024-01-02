@@ -116,6 +116,8 @@ class CommonStudent(models.Model):
 
     class Meta:
         abstract = True
+        
+        
 from .models import CommonStudent
 
 class Table1(CommonStudent):
@@ -125,3 +127,5 @@ class Table1(CommonStudent):
 class Table2(CommonStudent):
     class Meta:
         db_table = '2020-2021'
+        
+       

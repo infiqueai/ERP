@@ -266,41 +266,55 @@ def submit_receipt(request):
 
     return render(request, 'receipt.html', {'form': form})
 
+
+
+from django.apps import apps
+
+def get_table_model_for_years(start_year, end_year):
+    # Adjust this logic based on your actual model structure and database design
+    # For simplicity, assuming you have tables named 'startyear-endyear'
+    table_name = f"{start_year}-{end_year}"
+
+    try:
+        return apps.get_model(app_label='departments', model_name=table_name)
+    except LookupError:
+        # Handle the case where the model name does not exist
+        return None
+
+# views.py
+
+from django.apps import apps
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from .models import Table1, Table2  
 
 @require_POST
 def search_data(request):
-    session = request.POST.get('session')
-    selected_class = request.POST.get('class')
+    start_year = request.POST.get('startYear')
+    end_year = request.POST.get('endYear')
     name = request.POST.get('name')
     admission_number = request.POST.get('admissionNumber')
     father_name = request.POST.get('fatherName')
     father_mobile_number = request.POST.get('fatherMobileNumber')
 
-    search_results_table1 = Table1.objects.filter(
-        startyear=session,
-        ClassSequenceNumber=selected_class,
-        Name__icontains=name,
-        AdmissionNumber__icontains=admission_number,
-        FatherName__icontains=father_name,
-        FatherMobile__icontains=father_mobile_number
-    ).values()
+    # Get the model class based on the academic year
+    table_model = get_table_model_for_years(start_year, end_year)
 
-    search_results_table2 = Table2.objects.filter(
-        startyear=session,
-        ClassSequenceNumber=selected_class,
-        Name__icontains=name,
-        AdmissionNumber__icontains=admission_number,
-        FatherName__icontains=father_name,
-        FatherMobile__icontains=father_mobile_number
-    ).values()
+    if table_model:
+        search_results = table_model.objects.filter(
+            startyear=start_year,
+            Name__icontains=name,
+            AdmissionNumber__icontains=admission_number,
+            FatherName__icontains=father_name,
+            FatherMobile__icontains=father_mobile_number
+        ).values()
 
-    
-    search_results = list(search_results_table1) + list(search_results_table2)
+        return JsonResponse(list(search_results), safe=False)
+    else:
+        # Handle the case where the model does not exist
+        return JsonResponse([], safe=False)
 
-    return JsonResponse(search_results, safe=False)
+
+
 
 
 
