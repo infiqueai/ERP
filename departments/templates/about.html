@@ -1,0 +1,346 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Success Land Institute</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: white; 
+            color: black; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .logo {
+            display: flex; 
+            align-items: center; 
+        }
+
+        .logo img {
+            max-height: 50px; 
+        }
+         
+         .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin-right: 20px; 
+            position: relative; 
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black; 
+            font-size: 16px; 
+        }
+
+            
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+        h1, h6 {
+            display: inline;
+            margin: 0;
+        }
+    
+        h1 {
+            font-size: 70px; 
+        }
+    
+        h6 {
+            font-size: 24px; 
+        }
+        .grey-shadow {
+            text-shadow: 4px 4px 8px #888; 
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px; 
+            padding: 20px; 
+        }
+        
+        .image-grid {
+            display: flex;
+            align-items: flex-start; 
+        }
+        
+        .image {
+            border: 2px solid lightcoral;
+            padding: 0px;
+            flex: 1; 
+            max-width: 600px; 
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .image img {
+            width: 100%;
+            height: auto; 
+        }
+        
+        .text-container {
+            flex: 1; 
+            text-align: left; 
+            line-height: 20px;
+            word-spacing: 3px;
+            letter-spacing: 1px;
+        }
+        .content-container {
+            margin: 0 20px; 
+        }
+        .mission-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 20px; 
+        }
+        
+        .mission-content {
+            flex: 1;
+            padding: 20px;
+            line-height: 20px;
+            word-spacing: 3px;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        
+        .mission-image {
+            border: 2px solid lightcoral;
+            padding: 0px;
+            flex: 1; 
+            max-width: 500px; 
+            overflow: hidden;
+            height: 300px;
+        }
+        
+        .mission-image img {
+            max-width: 100%; 
+            height: 500px; 
+        }
+        .vision-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 20px; 
+        }
+        
+        .vision-image {
+            border: 2px solid lightcoral;
+            padding: 0px;
+            flex: 1; 
+            max-width: 600px; 
+            overflow: hidden;
+            height: 300px;
+        }
+        
+        .vision-image img {
+            max-width: 100%; 
+            height: 500px; 
+        }
+        
+        .vision-content {
+            text-align: right;
+            margin: 0 auto;
+            max-width: 1200px; 
+            padding: 20px; 
+            flex: 1;
+            line-height: 20px;
+            word-spacing: 3px;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+          
+          footer {
+            background-color: #333; 
+            color: white; 
+            padding: 40px 0; 
+            height: auto; 
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff; 
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ccc; 
+        }
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: white; 
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline; 
+        }
+        
+         .nav-link {
+            color: black; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        .nav-link:hover {
+            color: skyblue; 
+        }
+        .sub-link {
+            color: black; 
+            text-decoration: none; 
+            transition: color 0.3s; 
+        }
+        .sub-link:hover {
+            color: skyblue; 
+        }        
+        
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="logo">
+            <img src="{% static 'photos\Screenshot 2023-12-14 095702.png' %}" alt="Company Logo">
+            <div class="logo-text"><h2>Infique AI Services PVT. LTD.</h2></div>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="nav-link" href="{% url 'front' %}"><h4>Home</h4></a></li>
+                <li><a class="nav-link" href="{% url 'about' %}"><h4>About Us</h4></a></li>
+                <li><a class="nav-link" href="{% url 'feature' %}"><h4>Features</h4></a></li>
+                <li><a class="nav-link" href="{% url 'partner' %}"><h4>Partners</h4></a></li>
+                <li><a class="nav-link" href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content-container">
+        <div class="grey-shadow">
+            <b><h1>A</h1></b><span><h6>BOUT</h6></span>
+            <b><h1>U</h1></b><span><h6>S</h6></span>
+        </div>
+
+        <center>
+        <div class="container">
+            <div class="image-grid">
+                <div class="image">
+                    <img src="{% static 'photos\image.jpg' %}" alt="image1">
+                </div>
+    
+                <div class="image">
+                    <img src="{% static 'photos\image2.jpg' %}" alt="image2">
+                </div>
+            </div>
+            
+            <div class="text-container">
+                
+                <p>"InfiQue AI Services Pvt. Ltd. emerged onto the tech scene in 2021, and since then, we've been redefining the landscape of artificial intelligence. As a leading IT company, our core focus revolves around comprehensive training, innovative project development, and cutting-edge research initiatives. We're not just creating applications; we're shaping the future of AI. Our commitment to excellence and constant pursuit of knowledge positions us as pioneers in the IT sector."</p>
+                <p>"At InfiQue, education is more than a textbook; it's a journey of discovery. Our tailored training programs transcend conventional boundaries, fostering creativity and honing practical skills. We're not just educators; we're mentors guiding you towards a future where AI isn't just a tool but a way of life. Our world-class facilities and dedicated faculty create an environment where your aspirations are not just met but exceeded."</p>
+                <p>"Our success stories speak volumes about our dedication. Graduates from InfiQue have secured pivotal positions in renowned global companies. The testament to our impactful training and commitment to excellence shines through their achievements. Joining InfiQue isn't just joining a company; it's stepping onto a trajectory of success, where your accomplishments become our ultimate goal."</p>
+                <p>"In the dynamic realm of artificial intelligence, InfiQue AI Services stands out as an innovator. Our projects aren't just solutions; they're manifestations of creativity and technological prowess. Whether it's crafting sophisticated algorithms or developing user-friendly applications, InfiQue sets the standard. We're not just developing projects; we're creating experiences that define the digital landscape."</p>
+                <p>"Research is the backbone of our operations at InfiQue. Our dedicated team delves into the depths of AI, exploring new horizons and pushing boundaries. From machine learning advancements to exploring the potential of neural networks, our research initiatives redefine what's possible. When you're at InfiQue, you're not just part of a company; you're contributing to the forefront of AI innovation."</p>
+                <p>"InfiQue's commitment to technology extends beyond the corporate sphere. Our outreach programs aim to make AI education accessible to all. Through workshops, seminars, and community engagement, we're demystifying AI and empowering individuals from diverse backgrounds. At InfiQue, we believe that the benefits of AI should be inclusive and shared by everyone."</p>
+                <p>"Diversity is at the heart of InfiQue AI Services. Our team is a blend of talents from various backgrounds, fostering an environment where ideas flourish. We embrace uniqueness and encourage a collaborative culture where each voice is valued. At InfiQue, we believe that diversity is not just a policy but a catalyst for innovation and progress."</p>
+                <p>"InfiQue AI Services envisions a future where AI is a force for good. Our commitment to ethical AI practices guides every project we undertake. We believe in harnessing the power of AI responsibly, ensuring that our innovations contribute positively to society. At InfiQue, we're not just creating technology; we're shaping a future where AI serves humanity and makes a meaningful impact."</p>
+                
+            </div>
+            <div class="mission-container">
+                <div class="mission-content">
+                    <h2>OUR MISSION</h2>
+                    <p>At InfiQue AI Services Pvt. Ltd., our mission is to be at the forefront of artificial intelligence innovation, empowering individuals and businesses with cutting-edge solutions. We are committed to providing unparalleled training, delivering transformative project development, and advancing the boundaries of research in the AI domain. Our goal is to cultivate a community of forward-thinkers who harness the power of AI responsibly, contributing to a future where technology enhances human potential and positively impacts society.</p>
+                </div>
+                <div class="mission-image">
+                    <img src="{% static 'photos\mission.webp' %}" alt="Mission Image">
+                </div>
+            </div>
+            
+            <div class="vision-container">
+                <div class="vision-image">
+                    <img src="{% static 'photos\vission.jpg' %}" alt="Vision Image">
+                </div>
+                <div class="vision-content">
+                    <h2>OUR VISION</h2>
+                    <p>Our vision at InfiQue is to shape a world where artificial intelligence is not just a technological tool but an integral part of everyday life, making a positive difference in diverse sectors. We aspire to be a global leader, setting benchmarks in AI excellence, and creating a sustainable ecosystem that fosters innovation and inclusivity. Through our dedication to ethical AI practices, we envision a future where our technological advancements enhance the human experience, promote diversity, and address societal challenges with compassion and intelligence. InfiQue AI Services aims to be the catalyst for a smarter, more connected, and ethically-driven future.</p>
+                </div>
+            </div>
+        </div>
+        </center>
+    </div>
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><u>Company Profile</u> </h3>
+                <p>InfiQue AI Services Pvt. Ltd., founded in 2021, </p>
+                <p>is a premier IT company dedicated to providing top-notch training,</p>
+                <p>development, and research solutions, with a focus on advancing</p>
+                <p>the capabilities of artificial intelligence.</p>
+            </div>
+            <div class="footer-section">
+                <h3><u>Quick Links</u></h3>
+                <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'feature' %}">Features</a></li>
+                    <li><a href="{% url 'partner' %}">Partners</a></li>
+                    <li><a href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><u>Address</u></h3>
+                <p>P.No.20,Rishi Colony</p>
+                <p>Near Gate No.2, Gandhinagar</p>
+                <p>Railway Station,Tonk Phatak,</p>
+                <p>Jaipur</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.977703345348!2d75.79621267529339!3d26.872449476671253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db59f3489243f%3A0xad10ace544a0f3e6!2sInfique%20AI%20services%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1702980744023!5m2!1sen!2sin" width="100" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p>Follow The Map To Reach Us</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><u>Contact Us</u></h3>
+                <p>Email: infique@gmail.com</p>
+                <p>Mobile: 8708871687</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>            

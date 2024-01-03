@@ -50,6 +50,21 @@ def login_view(request):
 def index(request):
     return render(request, 'index.html')
 
+def front(request):
+    return render(request, 'front.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def feature(request):
+    return render(request, 'feature.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def partner(request):
+    return render(request, 'partner.html')
+
 from .models import AccountDetails
 def accounts(request):
     # Fetch data from the database using your model
