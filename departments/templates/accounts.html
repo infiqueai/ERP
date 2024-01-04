@@ -204,32 +204,49 @@
 </div>
 
 <script>
-    function addRow() {
-        var tableBody = document.getElementById('tableBody');
-        var newRow = tableBody.insertRow(tableBody.rows.length);
+    function filterTable() {
+        // Get input values
+        var searchName = document.querySelector("#feeTable input[type='text']").value.toUpperCase();
+        var selectedSession = document.querySelector("#feeTable select[name='session']").value;
+        var selectedClass = document.querySelector("#feeTable select[name='class']").value;
 
-        for (var i = 0; i < 10; i++) {
-            var cell = newRow.insertCell(i);
-            var input = document.createElement('input');
-            input.type = 'text';
-            cell.appendChild(input);
+        // Get the table rows
+        var rows = document.querySelectorAll("#feeTable tbody tr");
+
+        // Loop through all table rows
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+
+            // Get the cells in the current row
+            var cells = row.getElementsByTagName("td");
+
+            // Get the values in the 'Student', 'Session', and 'Class' columns
+            var studentValue = cells[3].querySelector("input.searchable-dropdown").value.toUpperCase();
+            var sessionValue = cells[6].querySelector("select.searchable-dropdown").value;
+            var classValue = cells[7].querySelector("select.searchable-dropdown").value;
+
+            console.log("Student:", studentValue);
+            console.log("Session:", sessionValue);
+            console.log("Class:", classValue);
+
+            // Check if the current row should be displayed based on the filter criteria
+            var showRow = (
+                studentValue.indexOf(searchName) > -1 &&
+                (selectedSession === "All" || sessionValue === selectedSession) &&
+                (selectedClass === "All" || classValue === selectedClass)
+            );
+
+            // Toggle the visibility of the row
+            row.style.display = showRow ? "" : "none";
         }
-    }
+    } 
 
-    // Function to delete the last row from the table
-    function deleteRow() {
-        var tableBody = document.getElementById('tableBody');
-        if (tableBody.rows.length > 0) {
-            tableBody.deleteRow(tableBody.rows.length - 1);
-        }
-    }
-
-    // Function to simulate data import
-    function importData() {
-        // You can implement the actual import logic here
-        alert('Import functionality to be implemented.');
-    }
+    // Attach the filterTable function to input and select events
+    document.querySelector("#feeTable input[type='text']").addEventListener("input", filterTable);
+    document.querySelector("#feeTable select[name='session']").addEventListener("change", filterTable);
+    document.querySelector("#feeTable select[name='class']").addEventListener("change", filterTable);
 </script>
+
 </body>
 </html>
 

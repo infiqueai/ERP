@@ -241,18 +241,15 @@
             </tbody>
         </table>
     </div>
-    
-
     <script>
-        
         function searchAndOpenTable() {
             var startYearElement = document.getElementById("startYear");
             var endYearElement = document.getElementById("endYear");
-        
+    
             if (startYearElement && endYearElement) {
                 var startYear = startYearElement.value;
                 var endYear = endYearElement.value;
-        
+    
                 fetch('{% url "search_data" %}', {
                     method: 'POST',
                     headers: {
@@ -279,41 +276,41 @@
                 console.error('One or more elements not found.');
             }
         }
-              
+    
         function populateStudentTable(data) {
             var table = document.getElementById("studentTable");
-        
+    
             // Get or create the header row
             var headerRow = table.querySelector("thead tr");
-        
+    
             if (!headerRow) {
                 headerRow = document.createElement("tr");
                 table.querySelector("thead").appendChild(headerRow);
             }
-        
+    
             // Clear existing header cells
             while (headerRow.cells.length > 0) {
                 headerRow.deleteCell(0);
             }
-        
+    
             // Populate header cells
             for (var key in data[0]) {
                 var headerCell = document.createElement("th");
                 headerCell.innerHTML = key;
                 headerRow.appendChild(headerCell);
             }
-        
+    
             // Use tbody for the table body
             var tbody = table.querySelector("tbody");
-        
+    
             if (!tbody) {
                 tbody = document.createElement("tbody");
                 table.appendChild(tbody);
             }
-        
+    
             // Clear existing rows
             tbody.innerHTML = '';
-        
+    
             // Populate data rows
             data.forEach(entry => {
                 var row = tbody.insertRow(-1);
@@ -323,12 +320,11 @@
                     cell.innerHTML = entry[key] !== null && entry[key] !== undefined ? entry[key] : '';
                 }
             });
-        
+    
             // Display the table container
             document.getElementById("studentTableContainer").style.display = "block";
-        }        
-        
-              
+        }
+    
         function clearFormFields() {
             document.getElementById("startYear").value = "";
             document.getElementById("endYear").value = "";
@@ -336,12 +332,12 @@
             document.getElementById("admissionNumber").value = "";
             document.getElementById("fatherName").value = "";
             document.getElementById("fatherMobileNumber").value = "";
-        
+    
             // Hide the table container
             document.getElementById("studentTableContainer").style.display = "none";
         }
-        
     </script>
+    
 
 </body>
 </html>
