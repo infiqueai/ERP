@@ -266,24 +266,21 @@ def Insertrecord(request):
 
 
 from .forms import ReceiptForm
-
+from django.contrib import messages
 def submit_receipt(request):
     if request.method == 'POST':
         form = ReceiptForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Record saved successfully..!')
-            return redirect('index')  # Redirect to a success page
+            return redirect('index')
         else:
-            messages.error(request, 'Record could not be saved.')
+            messages.error(request, 'Record could not be saved. Please check the form errors.')
             print(form.errors)  # Print form errors for debugging
     else:
         form = ReceiptForm()
 
     return render(request, 'receipt.html', {'form': form})
-
-
-
 
 from django.apps import apps
 

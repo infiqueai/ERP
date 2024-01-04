@@ -54,7 +54,7 @@ class Receipt(models.Model):
     receiptno = models.CharField(max_length=255)
     referenceno = models.CharField(max_length=255)
     student = models.CharField(max_length=255)
-    paymentmodedetails = models.CharField(max_length=255)
+    paymentmodedetails = models.CharField(max_length=255, blank=True)
     admissionno = models.CharField(max_length=255)
     session = models.CharField(max_length=255)
     Class = models.CharField(max_length=255)
