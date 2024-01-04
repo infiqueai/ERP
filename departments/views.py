@@ -266,6 +266,7 @@ def Insertrecord(request):
 
 
 from .forms import ReceiptForm
+
 def submit_receipt(request):
     if request.method == 'POST':
         form = ReceiptForm(request.POST)
@@ -275,7 +276,7 @@ def submit_receipt(request):
             return redirect('index')  # Redirect to a success page
         else:
             messages.error(request, 'Record could not be saved.')
-    
+            print(form.errors)  # Print form errors for debugging
     else:
         form = ReceiptForm()
 
@@ -283,17 +284,15 @@ def submit_receipt(request):
 
 
 
+
 from django.apps import apps
 
 def get_table_model_for_years(start_year, end_year):
-    # Adjust this logic based on your actual model structure and database design
-    # For simplicity, assuming you have tables named 'startyear-endyear'
     table_name = f"{start_year}-{end_year}"
 
     try:
         return apps.get_model(app_label='departments', model_name=table_name)
     except LookupError:
-        # Handle the case where the model name does not exist
         return None
 
 # views.py

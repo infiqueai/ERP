@@ -130,13 +130,17 @@
             <thead>
                 <tr>
                     <th>S.No.</th>
+                    <th>Receipt No.</th>
+                    <th>Reference Number</th>
+                    <th>
+                        <div>Student</div>
+                        <input type="text" class="searchable-dropdown" placeholder="Search Student">
+                    </th>
+                    <th>Payment Mode Detail</th>
+                    <th>Admission No.</th>
                     <th>
                         <div>Session</div>
                         <select class="searchable-dropdown">
-                            <option value="session1">2016-2017</option>
-                            <option value="session2">2017-2018</option>
-                            <option value="session3">2018-2019</option>
-                            <option value="session4">2019-2020</option>
                             <option value="session5">2020-2021</option>
                             <option value="session1">2021-2022</option>
                             <option value="session2">2022-2023</option>
@@ -170,52 +174,25 @@
                             <!-- Add more options as needed -->
                         </select>
                     </th>
-                    <th>
-                        <div>Student</div>
-                        <input type="text" class="searchable-dropdown" placeholder="Search Student">
-                    </th>
-                    <th>
-                        <div>Admission No</div>
-                        <input type="text" class="searchable-dropdown" placeholder="Search Admission No">
-                    </th>
-                    <th>
-                        <div>Fee</div>
-                        <select class="searchable-dropdown">
-                            <option value="fee1">1 Quarter</option>
-                            <option value="fee2">2 Quarter</option>
-                            <option value="fee1">3 Quarter</option>
-                            <option value="fee2">4 Quarter</option>
-                            <!-- Add more options as needed -->
-                        </select>
-                    </th>
-                    <th>Receipts</th>
-                    <th>Total Paid</th>
-                    <th>
-                        <div>Amount</div>
-                        <input type="text" class="searchable-dropdown" placeholder="Search Amount">
-                    </th>
-                    <th>
-                        <div>Status</div>
-                        <select class="searchable-dropdown">
-                            <option value="status1">Paid</option>
-                            <option value="status2">Unpaid</option>
-                        </select>
-                    </th>
+                    <th>Date</th>
+                    <th>Payment Mode</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
                 {% for fee_entry in account_data %}
                     <tr>
-                        <td>{{ fee_entry.S_no }}</td>
+                        <td>{{ fee_entry.S_No }}</td>
+                        <td>{{ fee_entry.ReceiptNo}}</td>
+                        <td>{{ fee_entry.ReferenceNumber }}</td>
+                        <td>{{ fee_entry.Student}}</td>
+                        <td>{{ fee_entry.PaymentModeDetail}}</td>
+                        <td>{{ fee_entry.AdmissionNo }}</td>
                         <td>{{ fee_entry.Session }}</td>
                         <td>{{ fee_entry.Class }}</td>
-                        <td>{{ fee_entry.StudentName }}</td>
-                        <td>{{ fee_entry.AdmissionNo }}</td>
-                        <td>{{ fee_entry.Fee }}</td>
-                        <td>{{ fee_entry.Receipts }}</td>
-                        <td>{{ fee_entry.TotalPaid }}</td>
-                        <td>{{ fee_entry.Amount }}</td>
-                        <td>{{ fee_entry.Status }}</td>
+                        <td>{{ fee_entry.Date }}</td>
+                        <td>{{ fee_entry.PaymentMode }}</td>
+                        <td>{{ fee_entry.Amount}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
