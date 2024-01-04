@@ -22,9 +22,7 @@ class ReceiptForm(forms.ModelForm):
         model = Receipt
         fields = '__all__'
 
-# forms.py
-from django import forms
-from .models import CommonStudent, Table1, Table2  # Import your models
+from .models import CommonStudent, Table1, Table2  
 
 def create_dynamic_form(model_class):
     class DynamicForm(forms.ModelForm):

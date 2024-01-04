@@ -50,6 +50,21 @@ def login_view(request):
 def index(request):
     return render(request, 'index.html')
 
+def front(request):
+    return render(request, 'front.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def feature(request):
+    return render(request, 'feature.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def partner(request):
+    return render(request, 'partner.html')
+
 from .models import AccountDetails
 def accounts(request):
     # Fetch data from the database using your model
@@ -63,7 +78,23 @@ def accounts(request):
 def Graphical(request):
     return render(request, 'graphical.html')
 
+
+from .forms import CommonStudentForm, Table1Form, Table2Form
+from .models import Table1, Table2
+
 def groupby(request):
+    if request.method == 'POST':
+        session = request.POST.get('session')
+
+        if session == '2021-2022':
+            data = Table1.objects.all()
+        elif session == '2020-2021':
+            data = Table2.objects.all()
+        else:
+            data = CommonStudent.objects.all()
+
+        return render(request, 'groupby.html', {'data': data, 'session': session})
+    
     return render(request, 'groupby.html')
 
 def student_form(request):
@@ -235,6 +266,7 @@ def Insertrecord(request):
 
 
 from .forms import ReceiptForm
+
 def submit_receipt(request):
     if request.method == 'POST':
         form = ReceiptForm(request.POST)
@@ -244,11 +276,60 @@ def submit_receipt(request):
             return redirect('index')  # Redirect to a success page
         else:
             messages.error(request, 'Record could not be saved.')
-    
+            print(form.errors)  # Print form errors for debugging
     else:
         form = ReceiptForm()
 
     return render(request, 'receipt.html', {'form': form})
+
+
+
+
+from django.apps import apps
+
+def get_table_model_for_years(start_year, end_year):
+    table_name = f"{start_year}-{end_year}"
+
+    try:
+        return apps.get_model(app_label='departments', model_name=table_name)
+    except LookupError:
+        return None
+
+# views.py
+
+from django.apps import apps
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+
+@require_POST
+def search_data(request):
+    start_year = request.POST.get('startYear')
+    end_year = request.POST.get('endYear')
+    name = request.POST.get('name')
+    admission_number = request.POST.get('admissionNumber')
+    father_name = request.POST.get('fatherName')
+    father_mobile_number = request.POST.get('fatherMobileNumber')
+
+    # Get the model class based on the academic year
+    table_model = get_table_model_for_years(start_year, end_year)
+
+    if table_model:
+        search_results = table_model.objects.filter(
+            startyear=start_year,
+            Name__icontains=name,
+            AdmissionNumber__icontains=admission_number,
+            FatherName__icontains=father_name,
+            FatherMobile__icontains=father_mobile_number
+        ).values()
+
+        return JsonResponse(list(search_results), safe=False)
+    else:
+        # Handle the case where the model does not exist
+        return JsonResponse([], safe=False)
+
+
+
+
 
 
 

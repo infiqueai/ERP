@@ -1,0 +1,655 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <title>Success Land Institute</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the header containing the logo and navigation */
+        header {
+            background-color: white; /* You can change the background color */
+            color: black; /* Text color */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        /* Style the logo */
+        .logo {
+            display: flex; /* Ensure both logo and text align correctly */
+            align-items: center; /* Vertically align the logo and text */
+        }
+
+        .logo img {
+            max-height: 50px; /* Adjust the size as needed */
+        }
+
+        /* Style the text next to the logo */
+        .logo-text {
+            margin-left: 10px; /* Add spacing between the logo and text */
+            font-weight: bold; /* Make the text bold if needed */
+        }
+
+        /* Style the navigation links */
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin-right: 20px; /* Add space between navigation items */
+            position: relative; /* Position the dropdown container */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black; /* Link text color */
+            font-size: 16px; /* Adjust the font size */
+        }
+
+        /* Style the text below the navigation bar */
+        .below-bar-text {
+            text-align: center;
+            margin-top: 20px; /* Add space between the bar and the text */
+            font-style: normal; /* Make the text italic */
+            font-weight: bold; /* Make the text bold */
+            font-size: 19px; /* Adjust the font size */
+            color: black; /* Text color */
+            font-family: cursive; /* Use cursive font */
+        }
+        .below-bar-image img {
+            width: 1500px; /* Set the width to the desired size */
+            height: 600px; /* Automatically adjust the height to maintain aspect ratio */
+        }
+        .box {
+            border: 2px solid #000; /* Border style and color */
+            padding: 10px; /* Padding inside the box */
+            width: 98%; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the box horizontally */
+            background-color: skyblue; /* Background color of the box */
+            color: #333; /* Text color inside the box */
+            height: 600px; /* Adjust the height as needed */
+        }
+       /* About Us Section */
+        .about-us {
+            background-color: #f9f9f9; /* Background color for the section */
+            padding: 40px 0; /* Adjust padding as needed */
+            text-align: center; /* Center-align the content within the section */
+            margin-top: 0px;
+        }
+
+        .about-us-content {
+            max-width: 800px; /* Adjust the maximum width of the content */
+            margin: 0 auto; /* Center the content horizontally */
+            padding: 20px; /* Add padding to the content */
+            text-align: left; /* Align paragraph text to the left or start */
+            text-decoration-color: #333;
+        }
+
+        .about-us h1 {
+            font-size: 50px; /* Adjust the font size for the section title */
+            margin-bottom: 20px; /* Add space below the section title */
+            font-weight: bold; /* Make the text bold */
+            font-style: italic; /* Apply italic style */
+            color: skyblue; /* Text color for the heading */
+            
+        }
+        .choose-us h1 {
+            font-size: 40px; /* Adjust the font size for the section title */
+            margin-bottom: 20px; /* Add space below the section title */
+            font-weight: bold; /* Make the text bold */
+            font-style: italic; /* Apply italic style */
+            color: skyblue; /* Text color for the heading */
+            
+        }
+        .line {
+            width: 100px; /* Adjust the width as needed */
+            height: 2px; /* Adjust the height as needed */
+            background-color: black; /* Line color */
+            margin: 20px auto; /* Center the line horizontally and add spacing */
+        }
+       
+        /* Style for the row-column table */
+        .choose-us-table {
+            display: flex;
+            justify-content: center; /* Center both elements horizontally */
+            align-items: center;
+            flex-wrap: wrap; /* Allow elements to wrap to the next line if needed */
+        }
+
+        .choose-us-image {
+            flex-basis: 45%; /* Adjust the width of the image container */
+            margin: 0 10px; /* Add a margin on both sides for spacing */
+        }
+
+        .choose-us-differences {
+            flex-basis: 45%; /* Adjust the width of the table container */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Style for the feature column */
+        .feature {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Style for the checkmark column */
+        .checkmark {
+            text-align: center;
+            font-size: 24px;
+            color: #00cc00; /* Green color for checkmarks */
+        }
+
+        /* Center align the text in the image container */
+        .choose-us-image img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* Ensure the image doesn't exceed the container width */
+        }
+        /* Red Rectangle Box */
+        .red-rectangle-box {
+            background-color: skyblue;
+            color: black;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .red-rectangle-box img {
+            border-radius: 50%;
+            max-width: 100px; /* Adjust the size as needed */
+            max-height: 100px; /* Adjust the size as needed */
+            margin-right: 20px; /* Add space between the circular image and text */
+        }
+        
+        .text-right {
+            flex-grow: 1;
+        }
+        
+        .text-right p {
+            font-size: 16px; 
+            line-height: 1.5; 
+        }
+        
+        .founder-text {
+            font-size: 18px; 
+            margin-top: 10px; 
+            text-align: left; 
+            
+        }
+        .section-title {
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-style: italic;
+            color: skyblue;
+            text-align: center; 
+        }
+
+        /* Style for the border container */
+        .border-container {
+            display: flex;
+            justify-content: center; /* Center-align the border element horizontally */
+        }
+
+        /* Style for the border element */
+        .border {
+            width: 100px; /* Adjust the width as needed */
+            height: 2px; /* Adjust the height as needed */
+            background: linear-gradient(to right, blue 50%, black 50%);
+            margin:2px; /* Add spacing around the border */
+            align-items: center;
+        }
+        /* Style for the section border container */
+        .section-border {
+            border: 4px solid;
+            border-image: linear-gradient(to right, blue, white);
+            border-image-slice: 1;
+            border-radius: 30px; /* Add rounded corners to the border */
+            padding: 20px; /* Adjust the padding as needed */
+            margin: 10px; /* Adjust the margin as needed */
+            height: 570px;
+        }
+
+        .team-section {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px 0;
+        }
+        
+        .team-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .team-member {
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            height: 40%;
+        }
+        
+        .team-member img {
+            max-width: 100%;
+            max-height: 20%;
+        }
+        
+        .team-member h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        
+        .team-member p {
+            margin: 10px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .team-section h2 {
+            font-size: 50px; /* Adjust the font size for the section title */
+            margin-bottom: 20px; /* Add space below the section title */
+            font-weight: bold; /* Make the text bold */
+            font-style: italic; /* Apply italic style */
+            color: skyblue; /* Text color for the heading */
+            
+        }
+         /* Footer styles */
+        footer {
+            background-color: #333; /* Dark grey background color */
+            color: white; /* Text color */
+            padding: 40px 0; /* Increase the padding to increase footer size */
+            height: auto; /* Make the height auto to adjust based on content */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff; /* White text color for section headings */
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ccc; /* Light grey text color for content */
+        }
+
+        .test-border{
+            border: 4px solid;
+            border-image: linear-gradient(to right, blue, black);
+            border-image-slice: 1;
+            border-radius: 20px; /* Add rounded corners to the border */
+            padding: 20px; /* Adjust the padding as needed */
+            margin: 10px; /* Adjust the margin as needed */
+            height: 550px;
+
+        }
+            /* Remove text decoration (dots and lines) under links and set color to white */
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: white; /* Set the color to white */
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline; /* Add underline on hover if desired */
+        }
+         /* Style for the main navigation links */
+         .nav-link {
+            color: black; /* Default color */
+            text-decoration: none; /* Remove underlines by default */
+            transition: color 0.3s; /* Smooth transition animation */
+        }
+
+        /* Change color on hover */
+        .nav-link:hover {
+            color: skyblue; /* Color when hovered */
+        }
+
+        /* Style for the sub-links in the dropdown menus */
+        .sub-link {
+            color: black; /* Default color */
+            text-decoration: none; /* Remove underlines by default */
+            transition: color 0.3s; /* Smooth transition animation */
+        }
+
+        /* Change color of sub-links on hover */
+        .sub-link:hover {
+            color: skyblue; /* Color when hovered */
+        }
+        .login-btn {
+            padding: 1px 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: skyblue;
+            color: #000;
+        }
+        .text-container {
+            padding-right: 550px; /* Add some space to the right of the text */
+        }
+
+        #highlight-text {
+            color: maroon;
+            font-weight: bold;
+            margin-bottom: -2;
+            text-align: center; /* Center align the heading */
+        }
+        #highlight-textt {
+            color: white;
+            font-weight: bold;
+            margin-bottom: -2; /* Reduce the bottom margin */
+            text-align: left; /* Center align the text */
+        }
+        
+        #highlight-texttt {
+            color: white;
+            font-weight: bold;
+            text-align: left; /* Center align the text */
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="logo">
+            <img src="{% static 'photos\Screenshot 2023-12-14 095702.png' %}" alt="Company Logo">
+            <div class="logo-text"><h2>Infique AI Services PVT. LTD.</h2></div>
+        </div>
+        <nav class="navbar">
+            <ul>
+                
+                <li><a class="nav-link" href="{% url 'front' %}"><h4>Home</h4></a></li>
+                <li><a class="nav-link" href="{% url 'about' %}"><h4>About Us</h4></a></li>
+                <li><a class="nav-link" href="{% url 'feature' %}"><h4>Features</h4></a></li>
+                <li><a class="nav-link" href="{% url 'partner' %}"><h4>Partners</h4></a></li>
+                <li><a class="nav-link" href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+                <li><a class="nav-link" href="{% url 'login' %}"><h4>LOGIN</h4></a></li>
+                
+            </ul>
+        </nav>
+    </header>
+    <div class="box">
+        <div class="below-bar-text">
+            <div class="text-container">
+                <h3 id="highlight-text">#1 | The First-Ever AI-Powered ERP System</h3>
+                <h1 id="highlight-textt">"Acquire an advanced educational platform<br>for your institute's next era."</h1>
+                <h3 id="highlight-texttt"> - Holistic Platform Solution</h3>
+                <h3 id="highlight-texttt">- Education Oversight System</h3>
+                <h3 id="highlight-texttt">- Exchange Hub Platform</h3>
+            </div>
+        </div>
+        <img src="{% static 'photos\erp.png' %}" alt="Standing Image" style="width: 600px; height: 500px; position: absolute; top: 60%; transform: translateY(-50%); right: 15px;">
+
+    </div>
+    
+    <section class="about-us">
+        <div class="about-us-content">
+            <h1><center>About Us</center></h1>
+            <div class="border-container">
+            <div class="border"></div>
+            </div>
+            <p><b>InfiQue AI Services Pvt. Ltd. emerged onto the tech scene in 2021,and since then, we've been redefining the landscape of artificial intelligence. As a leading IT company,our core focus revolves around comprehensive training, innovative project development, and cutting-edge research initiatives. We're not just creating applications; we're shaping the future of AI. Our commitment to excellence and constant pursuit of knowledge positions us as pioneers in the IT sector.  </b></p>
+            <p><b>At InfiQue, education is more than a textbook; it's a journey of discovery. Our tailored training programs transcend conventional boundaries, fostering creativity and honing practical skills. We're not just educators; we're mentors guiding you towards a future where AI isn't just a tool but a way of life. Our world-class facilities and dedicated faculty create an environment where your aspirations are not just met but exceeded.</b></p>
+            <p><a href="about">...Know more</a></p>
+        </div>
+    </section>
+  
+    <div class="section-border">
+        <section class="choose-us">
+            <div class="choose-us-content">
+                <h1 class="section-title"><center>WHY TO PREFER INFIQUE ERP?</center></h1>
+                <div class="border-container">
+                    <div class="border"></div>
+                </div>
+                <div class="choose-us-table">
+                    <div class="choose-us-differences">
+                        <table>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\cloud.jpg' %}" alt="Image 1" height="50px">
+                                    Cloud Based: Easy to Use, Updates in Real Time
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\secure.jpg' %}" alt="Image 2" height="50px">
+                                    Securing Your Information: We've Got Your Data Covered!
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\any device.jpg' %}" alt="Image 3" height="50px">
+                                    User Friendly
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\research.jpg' %}" alt="Image 4" height="50px">
+                                    Collaborating with Hundreds of Schools and Teachers.
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\trust-icon.png' %}" alt="Image 5" height="50px">
+                                    Trusted by 480+ Institutions, Serving a Happy Community of 120k Students.
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                            <tr>
+                                <td class="feature">
+                                    <img src="{% static 'photos\superior.jpg' %}" alt="Image 5" height="50px">
+                                    Offering 24/7 Support for Any Problem or Question You Have.
+                                </td>
+                                <td class="checkmark">✓</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    </center>
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><u>Company Profile</u> </h3>
+                <p>InfiQue AI Services Pvt. Ltd., founded in 2021, </p>
+                <p>is a premier IT company dedicated to providing top-notch training,</p>
+                <p>development, and research solutions, with a focus on advancing</p>
+                <p>the capabilities of artificial intelligence.</p>
+            </div>
+            <div class="footer-section">
+                <h3><u>Quick Links</u></h3>
+                <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'feature' %}">Features</a></li>
+                    <li><a href="{% url 'partner' %}">Partners</a></li>
+                    <li><a href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><u>Address</u></h3>
+                <p>P.No.20,Rishi Colony</p>
+                <p>Near Gate No.2, Gandhinagar</p>
+                <p>Railway Station,Tonk Phatak,</p>
+                <p>Jaipur</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.977703345348!2d75.79621267529339!3d26.872449476671253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db59f3489243f%3A0xad10ace544a0f3e6!2sInfique%20AI%20services%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1702980744023!5m2!1sen!2sin" width="100" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p>Follow The Map To Reach Us</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><u>Contact Us</u></h3>
+                <p>Email: infique@gmail.com</p>
+                <p>Mobile: 8708871687</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // JavaScript to toggle the dropdown menus
+        const galleryLink = document.querySelector(".navbar-item.dropdown:nth-child(3)"); // Select Gallery dropdown
+        const coursesLink = document.querySelector(".navbar-item.dropdown:nth-child(4)"); // Select Courses dropdown
+        const galleryDropdown = galleryLink.querySelector(".dropdown-content");
+        const coursesDropdown = coursesLink.querySelector(".dropdown-content");
+    
+        galleryLink.addEventListener("mouseenter", function () {
+            galleryDropdown.style.display = "block";
+        });
+    
+        galleryLink.addEventListener("mouseleave", function () {
+            galleryDropdown.style.display = "none";
+        });
+    
+        coursesLink.addEventListener("mouseenter", function () {
+            coursesDropdown.style.display = "block";
+        });
+    
+        coursesLink.addEventListener("mouseleave", function () {
+            coursesDropdown.style.display = "none";
+        });
+    
+        // Image carousel
+        const image1 = document.getElementById("image1");
+        const image2 = document.getElementById("image2");
+    
+        let currentImage = 1;
+    
+        function switchImages() {
+            if (currentImage === 1) {
+                image1.style.display = "none";
+                image2.style.display = "block";
+                currentImage = 2;
+            } else {
+                image1.style.display = "block";
+                image2.style.display = "none";
+                currentImage = 1;
+            }
+        }
+    
+        setInterval(switchImages, 3000); // Switch images every 3 seconds
+    
+        $(document).ready(function() {
+            // Initialize variables
+            var currentSlide = 0;
+            var testimonials = $(".testimonial");
+            var dots = $(".dot");
+            
+            // Function to show a specific testimonial
+            function showTestimonial(index) {
+                testimonials.hide();
+                testimonials.eq(index).fadeIn();
+            }
+            
+            // Click event for next button
+            $(".next-btn").click(function() {
+                currentSlide++;
+                if (currentSlide >= testimonials.length) {
+                    currentSlide = 0;
+                }
+                showTestimonial(currentSlide);
+            });
+            
+            // Click event for previous button
+            $(".prev-btn").click(function() {
+                currentSlide--;
+                if (currentSlide < 0) {
+                    currentSlide = testimonials.length - 1;
+                }
+                showTestimonial(currentSlide);
+            });
+            
+            // Show the first testimonial initially
+            showTestimonial(currentSlide);
+        });
+
+        const companyLogos = document.querySelectorAll('.company-logo');
+        const lightbox = document.createElement('div');
+        lightbox.classList.add('lightbox');
+        document.body.appendChild(lightbox);
+
+        companyLogos.forEach(logo => {
+            logo.addEventListener('click', () => {
+                const imgSrc = logo.querySelector('img').src;
+                const lightboxContent = `
+                    <img src="${imgSrc}" alt="Company Logo">
+                `;
+                lightbox.innerHTML = lightboxContent;
+                lightbox.style.display = 'block';
+            });
+        });
+
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+    
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+    
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth' // Smooth scrolling behavior
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+

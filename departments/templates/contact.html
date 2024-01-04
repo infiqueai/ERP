@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Success Land Institute</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style the header containing the logo and navigation */
+        header {
+            background-color: white; /* You can change the background color */
+            color: black; /* Text color */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        /* Style the logo */
+        .logo {
+            display: flex; /* Ensure both logo and text align correctly */
+            align-items: center; /* Vertically align the logo and text */
+        }
+
+        .logo img {
+            max-height: 50px; /* Adjust the size as needed */
+        }
+         /* Style the navigation links */
+         .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar li {
+            margin-right: 20px; /* Add space between navigation items */
+            position: relative; /* Position the dropdown container */
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: black; /* Link text color */
+            font-size: 16px; /* Adjust the font size */
+        }
+
+        /* Style the dropdown container */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        /* Style the dropdown items */
+        .dropdown-content a {
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            color: white;
+        }
+         /* Footer styles */
+         footer {
+            background-color: #333; /* Dark grey background color */
+            color: white; /* Text color */
+            padding: 40px 0; /* Increase the padding to increase footer size */
+            height: auto; /* Make the height auto to adjust based on content */
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            text-align: center;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff; /* White text color for section headings */
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #ccc; /* Light grey text color for content */
+        } 
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section ul li a {
+            text-decoration: none;
+            color: white; /* Set the color to white */
+        }
+
+        .footer-section ul li a:hover {
+            text-decoration: underline; /* Add underline on hover if desired */
+        } 
+        h1, h6 {
+            display: inline;
+            margin: 0;
+        }
+    
+        h1 {
+            font-size: 70px; /* Adjust the font size as needed */
+        }
+    
+        h6 {
+            font-size: 24px; /* Adjust the font size as needed */
+        }
+        .grey-shadow {
+            text-shadow: 4px 4px 8px #888; /* Add a grey shadow effect */
+        }
+        .container {
+            text-align: center; /* Center-align the content horizontally */
+            margin: 0 auto; /* Center the container horizontally on the page */
+            max-width: 1200px; /* Set a maximum width for the container */
+            padding: 20px; /* Add some padding for spacing */
+        }
+        .main-image {
+            width: 100%;
+            max-height: 270px; /* Set your desired height */
+            object-fit: cover;
+        }
+         /* Style for the main navigation links */
+         .nav-link {
+            color: black; /* Default color */
+            text-decoration: none; /* Remove underlines by default */
+            transition: color 0.3s; /* Smooth transition animation */
+        }
+
+        /* Change color on hover */
+        .nav-link:hover {
+            color: skyblue; /* Color when hovered */
+        }
+
+        /* Style for the sub-links in the dropdown menus */
+        .sub-link {
+            color: black; /* Default color */
+            text-decoration: none; /* Remove underlines by default */
+            transition: color 0.3s; /* Smooth transition animation */
+        }
+
+        /* Change color of sub-links on hover */
+        .sub-link:hover {
+            color: skyblue; /* Color when hovered */
+        }
+        .grey-shadow {
+            text-shadow: 4px 4px 8px #888; /* Add a grey shadow effect */
+        }
+
+    </style>
+</head>
+<body>
+    <header class="fixed-header">
+        <div class="logo">
+            <img src="{% static 'photos\Screenshot 2023-12-14 095702.png' %}" alt="Company Logo">
+            <div class="logo-text"><h2>Infique AI Services PVT. LTD.</h2></div>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a class="nav-link" href="{% url 'front' %}"><h4>Home</h4></a></li>
+                <li><a class="nav-link" href="{% url 'about' %}"><h4>About Us</h4></a></li>
+                <li><a class="nav-link" href="{% url 'feature' %}"><h4>Features</h4></a></li>
+                <li><a class="nav-link" href="{% url 'partner' %}"><h4>Partners</h4></a></li>
+                <li><a class="nav-link" href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="grey-shadow">
+        <b><h1>C</h1></b><span><h6>ONTACT</h6></span>
+        <b><h1>U</h1></b><span><h6>S</h6></span>
+        </div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.977703345348!2d75.79621267529339!3d26.872449476671253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db59f3489243f%3A0xad10ace544a0f3e6!2sInfique%20AI%20services%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1702980744023!5m2!1sen!2sin" width="1480" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><u>Company Profile</u> </h3>
+                <p>InfiQue AI Services Pvt. Ltd., founded in 2021, </p>
+                <p>is a premier IT company dedicated to providing top-notch training,</p>
+                <p>development, and research solutions, with a focus on advancing</p>
+                <p>the capabilities of artificial intelligence.</p>
+            </div>
+            <div class="footer-section">
+                <h3><u>Quick Links</u></h3>
+                <ul>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'feature' %}">Features</a></li>
+                    <li><a href="{% url 'partner' %}">Partners</a></li>
+                    <li><a href="{% url 'contact' %}"><h4>Contact</h4></a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3><u>Address</u></h3>
+                <p>P.No.20,Rishi Colony</p>
+                <p>Near Gate No.2, Gandhinagar</p>
+                <p>Railway Station,Tonk Phatak,</p>
+                <p>Jaipur</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.977703345348!2d75.79621267529339!3d26.872449476671253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db59f3489243f%3A0xad10ace544a0f3e6!2sInfique%20AI%20services%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1702980744023!5m2!1sen!2sin" width="100" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <p>Follow The Map To Reach Us</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3><u>Contact Us</u></h3>
+                <p>Email: infique@gmail.com</p>
+                <p>Mobile: 8708871687</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>            

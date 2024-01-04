@@ -141,13 +141,13 @@
                     <th scope="col">Class</th>
                     <th scope="col">Group</th>
                     <th scope="col">Name</th>
+                    <th scope="col">sr_no</th>
                     <th scope="col">FatherName</th>
                     <th scope="col">MotherName</th>
-                    <th scope="col">sr_no</th>
                     <th scope="col">Birth-Date</th>
                     <th scope="col">Category</th>
                     <th scope="col">Gender</th>
-                    <th scope="col">Primary Parent Mobile No</th>
+                    <th scope="col">Father Mobile No</th>
                     <th scope="col">Mother Mobile No</th>
                     <th scope="col">Address</th>
                 </tr>
@@ -155,20 +155,20 @@
                 <tbody>
                 {% for result in results %}
                 <tr>
-                    <th scope="row">{{ result.S_no }}</th>
+                    <th scope="row">{{ result.S_No}}</th>
                     <td>{{ result.Session }}</td>
                     <td>{{ result.Class }}</td>
                     <td>{{ result.Group }}</td>
                     <!-- Add an anchor tag around the student's name -->
                     <td><a href="#" class="student-link" data-student-id="{{ result.S_no }}">{{ result.Name }}</a></td>
-                    <td>{{ result.Father_name }}</td>
-                    <td>{{ result.Mother_name }}</td>
-                    <td>{{ result.sr_no }}</td>
-                    <td>{{ result.Birth_date }}</td>
+                    <td>{{ result.SR_No}}</td>
+                    <td>{{ result.FatherName }}</td>
+                    <td>{{ result.MotherName }}</td>
+                    <td>{{ result.BirthDate }}</td>
                     <td>{{ result.Category }}</td>
                     <td>{{ result.Gender }}</td>
-                    <td>{{ result.Primary_parent_mobile_no }}</td>
-                    <td>{{ result.Mother_mobile }}</td>
+                    <td>{{ result.FatherMobile }}</td>
+                    <td>{{ result.MotherMobile}}</td>
                     <td>{{ result.Address }}</td>
                 </tr>
                 {% endfor %}

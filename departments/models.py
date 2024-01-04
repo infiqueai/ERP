@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-
 class register(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -16,33 +13,37 @@ class register(models.Model):
 class StudentDetails(models.Model):
     class Meta:
         db_table = 'details_student'
-    S_no = models.AutoField(primary_key=True, default=1000)
+    S_No = models.AutoField(primary_key=True, default=1000)
     Session = models.CharField(max_length=100, blank=True, default="")
     Class = models.CharField(max_length=100, blank=True, default="")
     Group = models.CharField(max_length=100, blank=True, default="")
     Name = models.CharField(max_length=255, blank=True, default="")
-    Father_name = models.CharField(max_length=255, blank=True, default="")
-    Mother_name = models.CharField(max_length=255, blank=True, default="")
-    sr_no = models.IntegerField(default="")
-    Birth_date = models.DateField(max_length=255, default="")
+    SR_No = models.IntegerField(default="")
+    FatherName = models.CharField(max_length=255, blank=True, default="")
+    MotherName = models.CharField(max_length=255, blank=True, default="")
+    BirthDate = models.DateField(max_length=255, default="")
     Category = models.CharField(max_length=100, default="")
     Gender = models.CharField(max_length=10, default="")
-    Primary_parent_mobile_no = models.CharField(max_length=15, default="")
-    Mother_mobile = models.CharField(max_length=15, default="")
+    FatherMobile= models.CharField(max_length=15, default="")
+    MotherMobile = models.CharField(max_length=15, default="")
     Address = models.TextField(blank=True, default="")
 
     def _str_(self):
         return self.Name
     
-
-
 class stdInsert(models.Model):
-    studentname=models.CharField(max_length=100)
-    fathername =models.CharField(max_length=100)
+    session=models.CharField(max_length=100)
+    Class =models.CharField(max_length=100)
+    group=models.CharField(max_length=100)
+    name=models.CharField(max_length=100)
+    sr_no=models.CharField(max_length=100)
+    fathername=models.CharField(max_length=100)
     mothername=models.CharField(max_length=100)
-    Class=models.CharField(max_length=100)
-    age=models.CharField(max_length=100)
-    mobilenumber=models.CharField(max_length=100)
+    birthdate =models.CharField(max_length=100)
+    category=models.CharField(max_length=100)
+    gender=models.CharField(max_length=100)
+    fathermobile=models.CharField(max_length=100)
+    mothermobile=models.CharField(max_length=100)
     address=models.CharField(max_length=100)
     class Meta:
         db_table="admission"
@@ -50,13 +51,16 @@ class stdInsert(models.Model):
 from django.db import models
 
 class Receipt(models.Model):
-    receiptno = models.CharField(max_length=50)
-    studentname = models.CharField(max_length=45)
-    studentclass = models.CharField(max_length=45)
-    session = models.CharField(max_length=45)
-    amountpaid = models.DecimalField(max_digits=10, decimal_places=2)
-    totalfees = models.DecimalField(max_digits=10, decimal_places=2)
-    modeofpayment = models.CharField(max_length=45)
+    receiptno = models.CharField(max_length=255)
+    referenceno = models.CharField(max_length=255)
+    student = models.CharField(max_length=255)
+    paymentmodedetails = models.CharField(max_length=255)
+    admissionno = models.CharField(max_length=255)
+    session = models.CharField(max_length=255)
+    Class = models.CharField(max_length=255)
+    date = models.DateField()
+    paymentmode = models.CharField(max_length=255)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     class Meta:
         db_table = "receipt"
@@ -64,16 +68,17 @@ class Receipt(models.Model):
 class AccountDetails(models.Model):
     class Meta:
         db_table = 'account_details'
-    S_no = models.AutoField(primary_key=True, default=1000)
-    Session = models.CharField(max_length=100, blank=True, default="")
-    Class = models.CharField(max_length=100, blank=True, default="")
-    StudentName = models.CharField(max_length=100, blank=True, default="")
+    S_No = models.AutoField(primary_key=True, default=1000)
+    ReceiptNo = models.CharField(max_length=100, blank=True, default="")
+    ReferenceNumber= models.CharField(max_length=100, blank=True, default="")
+    Student= models.CharField(max_length=100, blank=True, default="")
+    PaymentModeDetail= models.CharField(max_length=255, blank=True, default="")
     AdmissionNo = models.CharField(max_length=255, blank=True, default="")
-    Fee = models.CharField(max_length=255, blank=True, default="")
-    Receipts = models.IntegerField(default="")
-    TotalPaid = models.DateField(max_length=255, default="")
-    Amount = models.CharField(max_length=100, default="")
-    Status = models.CharField(max_length=10, default="")
+    Session= models.IntegerField(default="")
+    Class = models.DateField(max_length=255, default="")
+    Date = models.CharField(max_length=100, default="")
+    PaymentMode = models.CharField(max_length=10, default="")
+    Amount = models.CharField(max_length=10, default="")
    
     def _str_(self):
         return self.StudentName
@@ -85,8 +90,6 @@ class CommonStudent(models.Model):
     Id = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=255)
     AdmissionNumber = models.CharField(max_length=20)
-    AdmissionSession = models.CharField(max_length=10)
-    AdmissionClass = models.CharField(max_length=10)
     AdmissionDate = models.DateField()
     Gender = models.CharField(max_length=10)
     Nationality = models.CharField(max_length=50)
@@ -113,9 +116,13 @@ class CommonStudent(models.Model):
     MotherCommunicationOn = models.CharField(max_length=255)
     SessionSequenceNumber = models.IntegerField()
     ClassSequenceNumber = models.IntegerField()
+    startyear= models.IntegerField()
+    endyear= models.IntegerField()
 
     class Meta:
         abstract = True
+        
+        
 from .models import CommonStudent
 
 class Table1(CommonStudent):
@@ -124,4 +131,6 @@ class Table1(CommonStudent):
 
 class Table2(CommonStudent):
     class Meta:
-        db_table = 'table2'
+        db_table = '2020-2021'
+        
+       
