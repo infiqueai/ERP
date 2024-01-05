@@ -1,28 +1,97 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 600px;
+        }
+
+        form input {
+            width: calc(50% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        form input[type="submit"] {
+            width: 100px%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }
+
+        #printButton {
+            width: 150px; /* Adjust the width as needed */
+            padding: 12px;
+            font-size: 16px;
+            background-color: #008CBA;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        hr {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h2>Beacon Public School</h2>
-<form method="POST" action="{% url 'submit_receipt' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    Receipt Number: <input type="text" placeholder="Enter Receipt Number" name="receiptno" required/><br/>
-    Reference Number: <input type="text" placeholder="Enter Refrence Number" name="referenceno" required/><br/>
-    Student Name: <input type="text" placeholder="Enter Student Name" name="student" required/><br/>
-    Payment Mode Details: <input type="text" placeholder="Enter Payment Mode Details" name="paymentmodedetails" required/><br/>
-    Admission No: <input type="text" placeholder="Enter Admission No" name="admissionno" required/><br/>
-    Session: <input type="text" placeholder="Enter Session" name="session" required/><br/>
-    Class: <input type="text" placeholder="Enter Class" name="Class" required/><br/>
-    Date: <input type="text" placeholder="Enter Date" name="date" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD"/><br/>
-    Payment Mode: <input type="text" placeholder="Enter Mode of Payment" name="paymentmode" required/><br/>
-    Amount: <input type="text" placeholder="Enter Amount" name="amount" required/><br/>
-    <input type="submit" value="Insert Record"/>
-</form>
-<hr/>
+    <h2>Beacon Public School</h2>
+    <form method="POST" action="{% url 'submit_receipt' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div style="display: flex; justify-content: space-between;">
+            <div style="width: 48%;">
+                Receipt Number: <input type="text" placeholder="Enter Receipt Number" name="receiptno" required/><br/>
+                Reference Number: <input type="text" placeholder="Enter Reference Number" name="referenceno" required/><br/>
+                Student Name: <input type="text" placeholder="Enter Student Name" name="student" required/><br/>
+                Payment Mode Details: <input type="text" placeholder="Enter Payment Mode Details" name="paymentmodedetails" required/><br/>
+                Admission No: <input type="text" placeholder="Enter Admission No" name="admissionno" required/><br/>
+            </div>
+            <div style="width: 48%;">
+                Session: <input type="text" placeholder="Enter Session" name="session" required/><br/>
+                Class: <input type="text" placeholder="Enter Class" name="Class" required/><br/>
+                Date: <input type="text" placeholder="Enter Date" name="date" required pattern="\d{4}-\d{2}-\d{2}" title="Please enter a date in the format YYYY-MM-DD"/><br/>
+                Payment Mode: <input type="text" placeholder="Enter Mode of Payment" name="paymentmode" required/><br/>
+                Amount: <input type="text" placeholder="Enter Amount" name="amount" required/><br/>
+            </div>
+        </div>
+        <input type="submit" value="Insert Record" style="width: 150px;" />
+        <button id="printButton" onclick="printReceipt()">Print</button>
+    </form>
+    <hr/>
+
+    <script>
+        function printReceipt() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
