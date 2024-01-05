@@ -17,10 +17,16 @@ class StdInsertForm(forms.ModelForm):
         fields = '__all__'
 
 
+from django import forms
+
 class ReceiptForm(forms.ModelForm):
     class Meta:
         model = Receipt
         fields = '__all__'
+        widgets = {
+            'date': forms.DateInput(attrs={'placeholder': 'YYYY-MM-DD'}),
+        }
+
 
 from .models import CommonStudent, Table1, Table2  
 
