@@ -42,3 +42,10 @@ Table1Form = create_dynamic_form(Table1)
 Table2Form = create_dynamic_form(Table2)
 CommonStudentForm = create_dynamic_form(CommonStudent)
 
+
+from .models import LeaveApplication
+
+class LeaveApplicationForm(forms.ModelForm):
+    class Meta:
+        model = LeaveApplication
+        fields = '__all__'

@@ -61,18 +61,19 @@
 <body>
     <div class="container">
         <h1>Leave Application Form</h1>
-        <form action="#" method="post">
+        <form action="{% url 'leaverecord' %}" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="studentName">Student Name:</label>
-                <input type="text" id="studentName" name="studentName" required>
+                <input type="text" id="studentName" name="student_name" required>
             </div>
             <div class="form-group">
                 <label for="class">Class:</label>
-                <input type="text" id="class" name="class" required>
+                <input type="text" id="class" name="class_name" required>
             </div>
             <div class="form-group">
                 <label for="leaveType">Leave Type:</label>
-                <select id="leaveType" name="leaveType" required>
+                <select id="leaveType" name="leave_type" required>
                     <option value="sick">Sick Leave</option>
                     <option value="vacation">Vacation Leave</option>
                     <option value="other">Other</option>
@@ -80,11 +81,11 @@
             </div>
             <div class="form-group">
                 <label for="startDate">Start Date:</label>
-                <input type="text" id="startDate" name="startDate" placeholder="YYYY-MM-DD" required>
+                <input type="text" id="startDate" name="start_date" placeholder="YYYY-MM-DD" required>
             </div>
             <div class="form-group">
                 <label for="endDate">End Date:</label>
-                <input type="text" id="endDate" name="endDate" placeholder="YYYY-MM-DD" required>
+                <input type="text" id="endDate" name="end_date" placeholder="YYYY-MM-DD" required>
             </div>
             <div class="form-group">
                 <label for="reason">Reason for Leave:</label>

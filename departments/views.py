@@ -327,7 +327,21 @@ def search_data(request):
         # Handle the case where the model does not exist
         return JsonResponse([], safe=False)
 
+from .forms import LeaveApplicationForm
+def leaverecord(request):
+    if request.method == 'POST':
+        form = LeaveApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Record saved successfully..!')
+            return redirect('index')  
+        else:
+            messages.error(request, 'Record could not be saved.')
+    
+    else:
+        form = LeaveApplicationForm()
 
+    return render(request, 'leave.html', {'form': form})
 
 
 

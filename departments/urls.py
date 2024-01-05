@@ -45,6 +45,7 @@ urlpatterns = [
     path('departments/result.html/', views.result, name='result'),
     path('departments/government.html/', views.government, name='government'),
     path('Insertrecord', views.Insertrecord, name='Insertrecord'),
+    path('leaverecord', views.leaverecord, name='leaverecord'),
     path('departments/client.html/', views.client, name='client'),
     path('submit_receipt/', views.submit_receipt, name='submit_receipt'),
     path('departments/weekly.html/', views.weekly, name='weekly'),

@@ -133,4 +133,14 @@ class Table2(CommonStudent):
     class Meta:
         db_table = '2020-2021'
         
+class LeaveApplication(models.Model):
+    student_name = models.CharField(max_length=255)
+    class_name = models.CharField(max_length=255)
+    leave_type = models.CharField(max_length=50, choices=[('sick', 'Sick Leave'), ('vacation', 'Vacation Leave'), ('other', 'Other')])
+    start_date = models.DateField()
+    end_date = models.DateField()
+    reason = models.TextField()
+
+    class Meta:
+        db_table = "leave"
        
