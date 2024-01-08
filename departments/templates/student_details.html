@@ -199,47 +199,43 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <script>
-        // Ensure that the document is ready before running JavaScript code
-        $(document).ready(function() {
-            // JavaScript function to handle the click event for student links
-            $(".student-link").click(function(e) {
-                e.preventDefault(); // Prevent the default link behavior
-
-                // Get the student ID from the data attribute
-                var studentId = $(this).data("student-id");
-                console.log("Student ID: " + studentId); // Add this line for debugging
-
-                // Make an AJAX request to fetch the student's data
-                $.ajax({
-                    url: "{% url 'student_details' %}",
-                    data: { student_id: studentId },
-                    type: "GET",
-                    success: function(response) {
-                        // Display the student's data on the page
-                        // You can update a specific div with the data or open a modal, for example
-                        alert("Student Data: " + response);
-                    },
-                    error: function() {
-                        alert("Error fetching student data.");
-                    }
-                });
-            });
-        });
-      // JavaScript function to handle the table search
-        function searchTable() {
-            var searchText = $("#searchInput").val().toLowerCase();
-            $("tbody tr").each(function() {
-                var rowText = $(this).text();
-                if (rowText && rowText.toLowerCase().indexOf(searchText) === -1) {
-                    $(this).hide();
-                } else {
-                    $(this).show();
+<script>
+    $(document).ready(function() {
+        $(".student-link").click(function(e) {
+            e.preventDefault();
+    
+            var studentId = $(this).data("student-id");
+            var containerId = $(this).data("container-id");
+    
+            // Use AJAX to fetch student details and update the content dynamically
+            $.ajax({
+                url: "{% url 'student_details' %}?student_id=" + studentId,
+                type: "GET",
+                success: function(response) {
+                    // Update the content of the specified container with the fetched data
+                    $("#" + containerId).html(response);
+                },
+                error: function() {
+                    alert("Error fetching student data.");
                 }
             });
-        }
-
-    </script>
+        });
+    });
+    
+    function searchTable() {
+        // Your existing searchTable function remains unchanged
+        var searchText = $("#searchInput").val().toLowerCase();
+        $("tbody tr").each(function() {
+            var rowText = $(this).text();
+            if (rowText && rowText.toLowerCase().indexOf(searchText) === -1) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    }
+</script>    
   </body>
 </html>
