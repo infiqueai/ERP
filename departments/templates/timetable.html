@@ -18,9 +18,8 @@
             justify-content: left;
             height: 100vh;
             font-size: 12px; /* Adjust the font size */
-            filter: grayscale(100%); /* Convert to black and white */
         }
-        
+
         .container {
             display: flex;
             flex-direction: column;
@@ -31,66 +30,66 @@
             width: 100%;
             height: 80vh;
         }
-        
+
         .grid-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 10px;
             margin-bottom: 20px;
         }
-        
+
         .grid-item,
         .small-box {
             border: 1px solid #ddd;
             padding: 10px;
             text-align: center;
-            filter: grayscale(100%); /* Convert to black and white */
             font-size: 12px; /* Adjust the font size */
         }
-        
+
         .small-box {
             width: 100%;
             box-sizing: border-box;
             padding: 5px;
             font-size: 12px;
         }
-        
-        .table-container {
+
+        .table-container.right-content {
             width: 100%;
             box-sizing: border-box;
             margin-top: 20px;
+            filter: grayscale(100%);
         }
-        
+
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
         }
-        
+
         th,
         td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
-        
+
         th {
             background-color: #000; /* Black background for table header */
             color: white;
         }
-        
+
         tr:nth-child(even) {
             background-color: #fff; /* White background for even rows */
         }
-        
+
         #timetable td {
             font-size: 14px;
         }
-        
+
         .small-button {
             padding: 5px; /* Adjust padding for smaller buttons */
         }
-        
+
         button {
             background-color: #000; /* Black background for buttons */
             color: white;
@@ -101,7 +100,7 @@
             transition: background-color 0.3s;
             margin-top: 10px;
         }
-        
+
         button:hover {
             background-color: #333; /* Darker background on hover */
         }
@@ -111,7 +110,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="table-container right-content">
         <div class="grid-container">
             <!-- First row with 4 boxes -->
             <div class="grid-item">
@@ -220,16 +219,10 @@
                 </select>
             </div>
         </div>
-
-        <!-- Closing the form tag -->
         <form>
-            <!-- Button for adding timetable entry -->
             <button type="button" onclick="addTimetableEntry()">Add Entry</button>
             <button type="button" onclick="clearTimetable()">Clear</button>
-
         </form>
-
-        <!-- Table container for displaying timetable -->
         <div class="table-container">
             <table id="timetable">
                 <tr>
@@ -242,10 +235,7 @@
                     <th>Period</th>
                     <th>Section</th>
                 </tr>
-                <!-- Existing table content goes here -->
             </table>
-
-            <!-- Download button -->
             <button type="button" onclick="downloadTimetable()">Download</button>
         </div>
     </div>
@@ -370,30 +360,24 @@
                 csvContent += rowData.join(",") + "\n";
             }
         
-            // Create a Blob
             var blob = new Blob([csvContent], { type: "text/csv;charset=utf-8" });
         
-            // Create a download link
             var a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
             a.download = "timetable.csv";
             a.textContent = "Download Timetable"
         
-            // Append the link to the body
             document.body.appendChild(a);
         
-            // Trigger a click on the link
             a.click();
         
-            // Remove the link from the body
             document.body.removeChild(a);
         }
         
         function clearTimetable() {
-            // Clear timetable data array
+            
             timetableData = [];
 
-            // Update the table
             updateTimetableTable();
         }
     </script>
