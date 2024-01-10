@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
-    <title>Success Land Institute</title>
+    <title>INFIQUE ERP</title>
     <style>
         body {
             margin: 0;
@@ -57,30 +57,6 @@
             text-decoration: none;
             color: black; /* Link text color */
             font-size: 16px; /* Adjust the font size */
-        }
-
-        /* Style the text below the navigation bar */
-        .below-bar-text {
-            text-align: center;
-            margin-top: 20px; /* Add space between the bar and the text */
-            font-style: normal; /* Make the text italic */
-            font-weight: bold; /* Make the text bold */
-            font-size: 19px; /* Adjust the font size */
-            color: black; /* Text color */
-            font-family: cursive; /* Use cursive font */
-        }
-        .below-bar-image img {
-            width: 1500px; /* Set the width to the desired size */
-            height: 600px; /* Automatically adjust the height to maintain aspect ratio */
-        }
-        .box {
-            border: 2px solid #000; /* Border style and color */
-            padding: 10px; /* Padding inside the box */
-            width: 98%; /* Adjust the width as needed */
-            margin: 0 auto; /* Center the box horizontally */
-            background-color: skyblue; /* Background color of the box */
-            color: #333; /* Text color inside the box */
-            height: 600px; /* Adjust the height as needed */
         }
        /* About Us Section */
         .about-us {
@@ -166,7 +142,6 @@
             margin: 0 auto;
             max-width: 100%; /* Ensure the image doesn't exceed the container width */
         }
-        /* Red Rectangle Box */
         .red-rectangle-box {
             background-color: skyblue;
             color: black;
@@ -190,28 +165,6 @@
             font-size: 16px; 
             line-height: 1.5; 
         }
-        
-        .founder-text {
-            font-size: 18px; 
-            margin-top: 10px; 
-            text-align: left; 
-            
-        }
-        .section-title {
-            font-size: 40px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-style: italic;
-            color: skyblue;
-            text-align: center; 
-        }
-
-        /* Style for the border container */
-        .border-container {
-            display: flex;
-            justify-content: center; /* Center-align the border element horizontally */
-        }
-
         /* Style for the border element */
         .border {
             width: 100px; /* Adjust the width as needed */
@@ -229,51 +182,6 @@
             padding: 20px; /* Adjust the padding as needed */
             margin: 10px; /* Adjust the margin as needed */
             height: 570px;
-        }
-
-        .team-section {
-            text-align: center;
-            background-color: #f9f9f9;
-            padding: 40px 0;
-        }
-        
-        .team-box {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        
-        .team-member {
-            width: 30%;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            height: 40%;
-        }
-        
-        .team-member img {
-            max-width: 100%;
-            max-height: 20%;
-        }
-        
-        .team-member h3 {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-        
-        .team-member p {
-            margin: 10px 0;
-            font-size: 14px;
-            color: #666;
-        }
-        .team-section h2 {
-            font-size: 50px; /* Adjust the font size for the section title */
-            margin-bottom: 20px; /* Add space below the section title */
-            font-weight: bold; /* Make the text bold */
-            font-style: italic; /* Apply italic style */
-            color: skyblue; /* Text color for the heading */
-            
         }
          /* Footer styles */
         footer {
@@ -389,10 +297,169 @@
             color: white;
             font-weight: bold;
             text-align: left; /* Center align the text */
+        } 
+        .front {
+            width: 100vw; /* Set the width to cover the full viewport width */
+            height: 100vh; /* Set the height to cover the full viewport height */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
+        .front img {
+            width: 100%; /* Set the width to cover the full width of the container */
+            height: 100%; /* Maintain the aspect ratio */
+        }
+        @media only screen and (max-width: 768px) {
+            header {
+                padding: 10px;
+            }
+
+            .logo img {
+                max-height: 25px;
+            }
+
+            .logo-text h2 {
+                margin-top: 5px;
+                font-size: 13px;
+            }
+
+            .navbar {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 10px;
+            }
+
+            .navbar li {
+                margin: 1px 0;
+            }
         
+            .nav-link h4 {
+                margin: 0;
+                font-size: 12px; /* Adjust the font size as needed */
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h6 {
+                font-size: 10px;
+            }
+            iframe {
+                width: 70%; 
+                height: 90px; 
+            }
+            .front img {
+                max-width:  100%; /* Set the width to cover the full width of the container */
+                max-height:  100%; /* Maintain the aspect ratio */
+            }
+        }
+        @media only screen and (max-width: 450px) {
+            h1 {
+                font-size: 15px;
+            }
+
+            h6 {
+                font-size: 8px;
+            }
+
+            .main-image {
+                max-height: 150px;
+            }
+            .navbar li {
+                margin: 1px 0;
+            }
         
+            .nav-link h4 {
+                margin: 0;
+                font-size: 12px; /* Adjust the font size as needed */
+            }
+
+            .main-image {
+                max-height: 150px;
+            }
+            .logo-text h2 {
+                margin-top: 5px;
+                font-size: 13px;
+            }
+            .navbar li:not(:last-child) {
+                margin-right: 4px;
+            }
+            .section-title {
+                font-size: 10px; /* Adjust the font size as needed */
+              }
+              .choose-us-table {
+                flex-direction: column;
+            }
         
+            .choose-us-differences {
+                flex-basis: 70%;
+            }
+        
+            table {
+                width: 70%;
+            }
+        
+            .feature {
+                text-align: center;
+                padding: 6px; /* Add padding for better spacing */
+            }
+        
+            .checkmark {
+                text-align: center;
+                padding: 6px; /* Add padding for better spacing */
+            }
+            .feature img {
+                max-width: 25px; /* Adjust the image size for smaller screens */
+              }
+          
+              .feature {
+                font-size: 12px; /* Adjust the font size for smaller screens */
+              }
+            iframe {
+                width: 65%; /* Make the map responsive */
+                height: 90px; /* Set a fixed height or adjust based on your design */
+            }
+            .front img {
+                max-width: 100%; /* Set the width to cover the full width of the container */
+                max-height:  100%; /* Maintain the aspect ratio */
+            }
+        
+        }  
+        
+        @media only screen and (max-width: 768px) {
+            .choose-us-table {
+                flex-direction: column;
+            }
+        
+            .choose-us-differences {
+                flex-basis: 100%;
+            }
+        
+            table {
+                width: 100%;
+            }
+        
+            .feature img {
+                max-width: 25px; /* Adjust the image size for smaller screens */
+              }
+          
+              .feature {
+                font-size: 12px; /* Adjust the font size for smaller screens */
+              }
+        
+            .checkmark {
+                text-align: center;
+                padding: 10px; /* Add padding for better spacing */
+            }
+        }
+    
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap'); 
+         font-family: 'Poppins', sans-serif;    
     </style>
 </head>
 <body>
@@ -414,18 +481,8 @@
             </ul>
         </nav>
     </header>
-    <div class="box">
-        <div class="below-bar-text">
-            <div class="text-container">
-                <h3 id="highlight-text">#1 | The First-Ever AI-Powered ERP System</h3>
-                <h1 id="highlight-textt">"Acquire an advanced educational platform<br>for your institute's next era."</h1>
-                <h3 id="highlight-texttt"> - Holistic Platform Solution</h3>
-                <h3 id="highlight-texttt">- Education Oversight System</h3>
-                <h3 id="highlight-texttt">- Exchange Hub Platform</h3>
-            </div>
-        </div>
-        <img src="{% static 'photos\erp.png' %}" alt="Standing Image" style="width: 600px; height: 500px; position: absolute; top: 60%; transform: translateY(-50%); right: 15px;">
-
+    <div class="front">
+        <img src="{% static 'photos\frontcanvaimg.png'%}" alt="photo">
     </div>
     
     <section class="about-us">
@@ -485,19 +542,12 @@
                                 </td>
                                 <td class="checkmark">✓</td>
                             </tr>
-                            <tr>
-                                <td class="feature">
-                                    <img src="{% static 'photos\superior.jpg' %}" alt="Image 5" height="50px">
-                                    Offering 24/7 Support for Any Problem or Question You Have.
-                                </td>
-                                <td class="checkmark">✓</td>
-                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </section>
-    </div>
+    </div> 
     
     </center>
     <footer id="contact">
